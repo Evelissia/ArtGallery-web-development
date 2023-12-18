@@ -28,6 +28,7 @@
             echo "<div class='image-item'>";
             echo "<img src='../img/" . $row["img"] . "' alt='Картина'>";
             echo "<h2>" . $row["description"] . "</h2>";
+            
             echo "</div>";
           }
         }

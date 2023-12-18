@@ -28,9 +28,10 @@
                         while($row = mysqli_fetch_assoc($result)) {
                             $authorId = $row["id"]; // Получение ID автора
                             echo "<div class='image-item'>";
+                            $authorLink = "<a href='http://localhost/documents/autor/pictures.php?id=" . $authorId . "' target='_blank'>" . $row["name"] . "</a>";
                             echo "<a href='http://localhost/documents/autor/pictures.php?id=" . $authorId . "' target='_blank'>";
                             echo "<img src='../img/" . $row["img"] . "' alt='Изображение автора'>";
-                            echo "</a>";
+                            
                             echo "<h2>" . $row["name"] . "</h2>";
                             echo "</div>";
                             // Создание ссылки для каждого автора с использованием его ID и открытием в новом окне

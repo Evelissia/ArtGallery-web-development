@@ -42,6 +42,7 @@
                       while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class='image-item'>";
                         echo "<img src='../img/" . $row["img"] . "' alt='Картина'>";
+                        echo "<p>" . $row["description"] . "</p>";
                         echo "</div>";
                       }
                     } else {
