@@ -42,7 +42,7 @@
                     if (mysqli_num_rows($result) > 0) {
                       while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class='image-item'>";
-                        echo "<img src='../img/" . $row["img"] . "' alt='Картина'>";
+                        echo "<img src='../img/" . $row["img"] . "' alt='Картина' onerror=\"this.onerror=null; this.src='../../error/stub/hajicon.png'\">";
                         echo "<p>" . $row["description"] . "</p>";
                         echo "</div>";
                       }

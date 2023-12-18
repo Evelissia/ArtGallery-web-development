@@ -13,6 +13,12 @@
   </head>
   <body>
     <header id="menu">
+    <div class="duplicated-links">
+        <a href="http://localhost/documents/autor/autors.php" title="Список всех авторов">Авторы</a>
+        <a href="http://localhost/documents/genre/genre.php" title="Список жанров">Жанры</a>
+        <a href="http://localhost/documents/genre/all_picturies.php" title="Список картин">Картины</a>
+      </div>
+      
       <script type="text/javascript" src="script.js"></script>
     </header>
     <div class="parent">

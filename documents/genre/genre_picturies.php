@@ -4,6 +4,7 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Все картины выбранного жанра">
       <link rel="shortcut icon" href="/documents/img/favicon.ico" type="image/x-icon">
       <link rel="stylesheet" href="/style.css">
       <link rel="stylesheet" href="/media.css">
@@ -41,7 +42,7 @@
                     if (mysqli_num_rows($result) > 0) {
                       while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class='image-item'>";
-                        echo "<img src='../img/" . $row["img"] . "' alt='Картина'>";
+                        echo "<img src='../img/" . $row["img"] . "' alt='Картина' onerror=\"this.onerror=null; this.src='../../error/stub/hajicon.png'\">";
                         echo "<p>" . $row["description"] . "</p>";
                         echo "</div>";
                       }
