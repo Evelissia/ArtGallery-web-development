@@ -27,9 +27,11 @@
         if (mysqli_num_rows($result) > 0) {
           while($row = mysqli_fetch_assoc($result)) {
             $genreId = $row["id"];
+            echo "<div class='image-item'>";
 
             $genreLink = "<a href='http://localhost/documents/genre/genre_picturies.php?id=" . $genreId . "' target='_blank'>" . $row["genre"] . "</a>";
-            echo "<div class='image-item'>";
+            echo "<a href='http://localhost/documents/genre/genre_picturies.php?id=" . $genreId . "' target='_blank'>";
+            //echo "<div class='image-item'>";
             echo "<img src='../img/" . $row["img"] . "' alt='Картина'>";
             echo "<h2>" . $genreLink . "</h2>";
             echo "</div>";

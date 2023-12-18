@@ -27,14 +27,19 @@
                     if (mysqli_num_rows($result) > 0) {
                         while($row = mysqli_fetch_assoc($result)) {
                             $authorId = $row["id"]; // Получение ID автора
-
+                            echo "<div class='image-item'>";
+                            echo "<a href='http://localhost/documents/autor/pictures.php?id=" . $authorId . "' target='_blank'>";
+                            echo "<img src='../img/" . $row["img"] . "' alt='Изображение автора'>";
+                            echo "</a>";
+                            echo "<h2>" . $row["name"] . "</h2>";
+                            echo "</div>";
                             // Создание ссылки для каждого автора с использованием его ID и открытием в новом окне
-                            $authorLink = "<a href='http://localhost/documents/autor/pictures.php?id=" . $authorId . "' target='_blank'>" . $row["name"] . "</a>";
-                            //echo "<tr>". "<td><p>". $row["id"] ."</p></td>"."<td><p>"."<a href='http://localhost/documents/author/pictures.php?author={$row["name"]}'>". $row["name"] ."</p>;</a>"."</td>"."</tr>";
+                            /*$authorLink = "<a href='http://localhost/documents/autor/pictures.php?id=" . $authorId . "' target='_blank'>" . $row["name"] . "</a>";
+                           
                             echo "<div class='image-item'>";
                             echo "<img src='../img/" . $row["img"] . "' alt='Картина'>";
                             echo "<h2>" . $authorLink . "</h2>";
-                            echo "</div>";
+                            echo "</div>";*/
                         }
                     }
                     mysqli_close($conn);

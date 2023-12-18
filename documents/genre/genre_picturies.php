@@ -7,7 +7,7 @@
       <link rel="shortcut icon" href="/documents/img/favicon.ico" type="image/x-icon">
       <link rel="stylesheet" href="/style.css">
       <link rel="stylesheet" href="/media.css">
-      <title>Картины автора</title>
+      <title>Картины жанра</title>
       <style>
       
     </style>
