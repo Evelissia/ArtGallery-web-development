@@ -1,4 +1,5 @@
-document.getElementById("menu").innerHTML = '\
+document.getElementById('menu').innerHTML =
+  '\
 <div class="container">\
     <nav id="navigation">\
         <a href="http://localhost/hello.php" class="logo" title="Главная страница">Картинная галерея</a>\

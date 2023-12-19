@@ -5,6 +5,8 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="description" content="Жанры картин">
+      <meta property="og:title" content="Популярные жанры в художестве">
+      <meta property="og:description" content="На этой странице представлены самые популярные жанры в художестве">
       <link rel="shortcut icon" href="/documents/img/favicon.ico" type="image/x-icon">
       <link rel="stylesheet" href="/style.css">
       <link rel="stylesheet" href="/media.css">

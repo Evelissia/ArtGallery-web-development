@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,8 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Все картины жанров и авторов">
+    <meta property="og:title" content="Картины известных художников">
+    <meta property="og:description" content="На этой странице представлены картины известных художников">
     <link rel="shortcut icon" href="/documents/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/documents/genre/styleBtn.css">
     <title>Все картины</title>
     <style>
 
@@ -35,6 +39,10 @@
         mysqli_close($conn);
       ?>
     </div>
+   
+    <div class="btn-print">
+      <button onclick="javascript:window.print()">Печать</button>
+      </div>
     <footer>
       &copy; <?php echo date("Y"); ?> Галерея живописи. Все права защищены.
     </footer>
