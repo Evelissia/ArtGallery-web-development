@@ -5,17 +5,50 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="description" content="Все картины выбранного жанра">
+      <!--Bootstrap CSS-->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Kalnia:wght@400;600&family=Noto+Sans:wght@300;400;500;700&family=PT+Sans+Caption:wght@400;700&display=swap" rel="stylesheet">
+      
+      <!--Font Awesome-->
+      <script src="https://kit.fontawesome.com/3ace3ebe9b.js" crossorigin="anonymous"></script>
+
       <link rel="shortcut icon" href="/documents/img/favicon.ico" type="image/x-icon">
-      <link rel="stylesheet" href="/style.css">
-      <link rel="stylesheet" href="/media.css">
+      <link rel="stylesheet" href="/st.css">
       <title>Картины жанра</title>
       <style>
       
     </style>
   </head>
   <body>
-    <header id="menu">
-      <script type="text/javascript" src="/script.js"></script>
+  <header class="container-fluid" id="menu">
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
+          
+            <h1 class="logoo"><img src="/documents/img/favicon.ico" alt="Галерея" class="gallery-image">
+            <a href="http://localhost/hello.php" class="logo" title="Главная страница">Картинная галерея</a></h1>
+          </div>
+          <nav class="col-8">
+            <ul>
+              <li><a href="http://localhost/documents/autor/autors.php">Авторы</a></li>
+              <li><a href="http://localhost/documents/genre/genre.php" title="Список жанров">Жанры</a></li>
+              <li><a href="http://localhost/documents/genre/all_picturies.php" title="Список картин">Картины</a></li>
+              
+              <li>
+                <a href="#">
+                  <i class="fa fa-user"></i>
+                  Кабинет</a>
+                <ul>
+                <li><a href="#" title="">Админ панель</a></li>
+              <li><a href="#" title="">Выход</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+      </div>
+      </div>
     </header>
     <div class="image-container">
             
@@ -33,7 +66,7 @@
                     $genreRow = mysqli_fetch_assoc($genreResult);
                     $genreName = $genreRow["genre"];
               
-                    echo "<h1 style='width: 100%; text-align: center;'>Картины $genreName:</h1>";
+                    echo "<h1 style='width: 100%; text-align: center; margin-top: 30px;'>Картины $genreName:</h1>";
               
                     // Выполнение SQL-запроса для получения картин конкретного автора
                     $sql = "SELECT * FROM images WHERE gallery_id = $genreId";
@@ -42,7 +75,7 @@
                     if (mysqli_num_rows($result) > 0) {
                       while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class='image-item'>";
-                        echo "<img src='../img/" . $row["img"] . "' alt='Картина' onerror=\"this.onerror=null; this.src='../../error/stub/hajicon.png'\">";
+                        echo "<img src='../img/" . $row["img"] . "' alt='Картина' class='img-item img-fluid' onerror=\"this.onerror=null; this.src='../../error/stub/hajicon.png'\">";
                         echo "<p>" . $row["description"] . "</p>";
                         echo "</div>";
                       }
