@@ -42,7 +42,7 @@
                   <i class="fa fa-user"></i>
                   Кабинет</a>
                 <ul>
-                <li><a href="#" title="">Админ панель</a></li>
+                <li><a href="http://localhost/documents/admin" title="">Админ панель</a></li>
               <li><a href="#" title="">Выход</a></li>
                 </ul>
               </li>

@@ -13,7 +13,7 @@ a {
   color: inherit;
 }
 a:hover {
-  color: #ffffff;
+  color: #000000;
 }
 ul, 
 ol,
@@ -32,7 +32,7 @@ body {
   height: 100%;
   line-height: 1;
   font-size: 16px;
-  background: antiquewhite;
+  background: rgb(243, 243, 243);
 }
 
 .wrapper {
@@ -44,18 +44,43 @@ body {
   padding: 30px;
   flex: 1 1 auto;
 }
+
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.block {
+  background: linear-gradient(135deg, #7b6350, #3b2d1e);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 80%;
+}
+
+.block h2 {
+  margin-bottom: 10px;
+  color: #fff; /* изменение цвета текста */
+}
+
+.block h4 {
+  color: #f1f1f1; /* изменение цвета текста */
+}
 /*
         HEADER
         */
 header {
-  background: #3b2525;
+  background: rgb(234, 234, 234);
   height: 80px;
   position: sticky;
   top: 0;
+  z-index: 5;
 }
 
 header * {
-  color: #ffffff;
+  color: #000000;
 }
 
 header h1 {
@@ -63,17 +88,20 @@ header h1 {
 }
 
 header h1 a:hover {
-  color: #ffffff;
+  
 }
 
 .logo {
-  
   text-decoration: none;
   margin-left: 5px;
   font-size: 25px;
 }
+.logo a:hover {
+  text-decoration: none;
+}
 .logoo{
-  color: #ffffff;
+  
+  text-decoration: none;
   font-size: 25px;
 }
 .gallery-image {
@@ -131,10 +159,10 @@ header ul li ul a {
 
 /* FOOTER */
 .footer {
-  background: #3b2525;
-  color: #ffffff;
+  background: rgb(234, 234, 234);
+  color: #000000;
   text-align: center;
-  padding: 20px;
+  padding: 40px;
   bottom: 0;
   width: 100%;
 }
@@ -148,7 +176,22 @@ header ul li ul a {
 .image-item {
   width: calc(33.33% - 20px);
   margin-bottom: 20px;
-  margin-left: 15px
+  margin-left: 15px;
+  display: inline-block; /* Строчно-блочный элемент */
+  overflow: hidden;
+  position: relative;
+  
+}
+
+.image-item img {
+  transition: 0.5s; /* Время эффекта */
+    display: block;
+    z-index: -22;
+}
+
+.image-item img:hover {
+  transform: scale(0.99);
+  z-index: -22;
 }
 
 .image-item:nth-child(3n+1) {
@@ -159,4 +202,34 @@ header ul li ul a {
   height: 500px;
   width: 400px;
   object-fit: cover;
+  border-radius: 20px;
+  transition: 0.5s
+}
+
+.img-item:hover {
+  opacity: 0.7;
+}
+
+.img-container {
+  position: relative;
+  overflow: hidden;
+}
+.image-container h1 {
+  font-size: 45px;
+}
+
+.hidden-title {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Анимация */
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.image-item:hover .hidden-title {
+  opacity: 1;
 }

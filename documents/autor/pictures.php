@@ -54,49 +54,51 @@
     <div class="image-container">
             
           
-                  <?php
-                  require_once '../genre/db_connect.php';
-                  // Получение ID автора из URL-параметра
-                  $authorId = $_GET['id'];
+    <?php
+    require_once '../genre/db_connect.php';
+    // Получение ID автора из URL-параметра
+    $authorId = $_GET['id'];
 
-                   // Выполнение SQL-запроса для получения имени автора
-                  $authorSql = "SELECT name FROM author WHERE id = $authorId";
-                  $authorResult = mysqli_query($conn, $authorSql);
+    // Выполнение SQL-запроса для получения имени автора
+    $authorSql = "SELECT name FROM author WHERE id = $authorId";
+    $authorResult = mysqli_query($conn, $authorSql);
 
-                  if (mysqli_num_rows($authorResult) > 0) {
-                    $authorRow = mysqli_fetch_assoc($authorResult);
-                    $authorName = $authorRow["name"];
-              
-                    echo "<h1 style='width: 100%; text-align: center; margin-top: 30px;'>Картины $authorName:</h1>";
-              
-                    // Выполнение SQL-запроса для получения картин конкретного автора
-                    $sql = "SELECT * FROM images WHERE author_id = $authorId";
-                    $result = mysqli_query($conn, $sql);
-              
-                    if (mysqli_num_rows($result) > 0) {
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<div class='image-item'>";
-                        echo "<img src='../img/" . $row["img"] . "' alt='Картина' class='img-item img-fluid' onerror=\"this.onerror=null; this.src='../../error/stub/hajicon.png'\">";
-                        echo "<p>" . $row["description"] . "</p>";
-                        echo "</div>";
-                      }
-                    } else {
-                      echo "<p>У данного автора нет картин.</p>";
-                    }
-                  } else {
-                    echo "<p>Автор не найден.</p>";
-                  }
-              
-                  mysqli_close($conn);
+    if (mysqli_num_rows($authorResult) > 0) {
+        $authorRow = mysqli_fetch_assoc($authorResult);
+        $authorName = $authorRow["name"];
 
-                  ?>
+        echo "<h1 style='width: 100%; text-align: center; margin-top: 30px;'>Картины $authorName:</h1>";
+
+        // Выполнение SQL-запроса для получения картин конкретного автора
+        $sql = "SELECT * FROM images WHERE author_id = $authorId";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<div class='image-item'>";
+                echo "<div class='img-container'>"; // Добавлен контейнер для изображения и текста
+                echo "<img src='../img/" . $row["img"] . "' alt='Картина' class='img-item img-fluid'>";
+                echo "<h2 class='hidden-title'>" . $row["description"] . "</h2>"; // Добавлен скрытый заголовок
+                echo "</div>";
+                echo "</div>";
+            }
+        } else {
+            echo "<p>У данного автора нет картин.</p>";
+        }
+    } else {
+        echo "<p>Автор не найден.</p>";
+    }
+
+    mysqli_close($conn);
+?>
+
         
     </div>
     <script type="text/javascript">
       
     </script>
 
-<footer>
+<footer class="footer">
     &copy; <?php echo date("Y"); ?> Галерея живописи. Все права защищены.
   </footer>
   </body>

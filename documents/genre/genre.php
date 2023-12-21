@@ -58,25 +58,26 @@
     <div class="parent">
     <div class="image-container">
     <h1 style="width: 100%; text-align: center;">Жанры:</h1>
-      <?php
-        require_once 'db_connect.php';
-        $sql = "SELECT * FROM genre";
-        $result = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($result) > 0) {
-          while($row = mysqli_fetch_assoc($result)) {
+    <?php
+    require_once 'db_connect.php';
+    $sql = "SELECT * FROM genre";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
             $genreId = $row["id"];
             echo "<div class='image-item'>";
-
             $genreLink = "<a href='http://localhost/documents/genre/genre_picturies.php?id=" . $genreId . "' target='_blank'>" . $row["genre"] . "</a>";
             echo "<a href='http://localhost/documents/genre/genre_picturies.php?id=" . $genreId . "' target='_blank'>";
-            //echo "<div class='image-item'>";
+            echo "<div class='img-container'>"; // Добавлен контейнер для изображения и текста
             echo "<img src='../img/" . $row["img"] . "' alt='Картина' class='img-item img-fluid'>";
-            echo "<h2>" . $genreLink . "</h2>";
+            echo "<h2 class='hidden-title'>" . $genreLink . "</h2>"; // Добавлен скрытый заголовок
             echo "</div>";
-          }
+            echo "</a>";
+            echo "</div>";
         }
-        mysqli_close($conn);
-      ?>
+    }
+    mysqli_close($conn);
+?>
     </div>
     </div>
     
