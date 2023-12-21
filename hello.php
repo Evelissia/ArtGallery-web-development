@@ -1,3 +1,5 @@
+<?php include("documents/include/path.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
