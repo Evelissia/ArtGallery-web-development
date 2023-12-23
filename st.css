@@ -256,3 +256,10 @@ header ul li ul a {
   margin-left: 55px;
   transition: all .3s;
 }
+
+/*FOrms*/
+form div.err {
+  color: red;
+  font-style: italic;
+  font-size: 14px;
+}

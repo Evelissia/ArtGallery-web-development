@@ -30,8 +30,17 @@ tt(selectAll('users'))*/
 
 require('db_connect.php');
 
+// Функция для вывода данных в формате tt
+function tt($value)
+{
+  echo '<pre>';
+  print_r($value);
+  echo '</pre>';
+}
+
 // Проверка выполнения запроса к БД
-function dbCheckError($conn) {
+function dbCheckError($conn)
+{
   if (mysqli_error($conn)) {
     echo "Ошибка запроса: " . mysqli_error($conn);
     exit();
@@ -40,7 +49,8 @@ function dbCheckError($conn) {
 }
 
 // Запрос на получение данных одной таблицы
-function selectAll($table, $conn, $params = []) {
+function selectAll($table, $conn, $params = [])
+{
   if (!empty($params)) {
     $sql = "SELECT * FROM $table WHERE ";
     $conditions = [];
@@ -73,14 +83,20 @@ $params = [
 ];
 
 // Запись в таблицу БД
-function insert($conn, $table, $data = []) {
+function insert($conn, $table, $data = [])
+{
   if (!empty($data)) {
     $keys = implode(', ', array_keys($data));
     $values = "'" . implode("', '", array_values($data)) . "'";
-  
+
     $sql = "INSERT INTO $table ($keys) VALUES ($values)";
-  
-    return mysqli_query($conn, $sql) ? mysqli_insert_id($conn) : null;
+
+    if (mysqli_query($conn, $sql)) {
+      dbCheckError($conn); // Проверка ошибок
+      return mysqli_insert_id($conn);
+    } else {
+      return null;
+    }
   } else {
     return null;
   }
@@ -89,21 +105,18 @@ function insert($conn, $table, $data = []) {
 // Пример использования функции insert для добавления новой записи
 $data = [
   'admin' => '1',
-  'username' => '444',
-  'email' => 'kuku456@test.com',
+  'username' => 'VikaaaEveliSaturn',
+  'email' => 'vikaeveli@test.com',
   'password' => '4444'
 ];
 
-$result = insert($conn, 'users', $data);
+//$result = insert($conn, 'users', $data);
 
-if ($result !== null) {
-  echo "Новая запись добавлена. ID: " . $result;
-} else {
-  echo "Ошибка при добавлении записи.";
-}
+
 
 // обновление строки в таблице
-function updateUserFields($conn, $table, $userId, $params) {
+function updateUserFields($conn, $table, $userId, $params)
+{
   $sql = "UPDATE $table SET ";
   $updates = [];
 
@@ -113,17 +126,17 @@ function updateUserFields($conn, $table, $userId, $params) {
 
   $sql .= implode(', ', $updates);
   $sql .= " WHERE id = ?";
-  
+
   $stmt = mysqli_prepare($conn, $sql);
 
   if ($stmt) {
     // Формируем типы данных для привязки параметров
     $types = str_repeat('s', count($params)) . 'i';
-    
+
     // Создаем массив значений
     $paramValues = array_values($params);
     $paramValues[] = $userId; // Добавляем значение для ID пользователя
-    
+
     // Привязываем параметры
     mysqli_stmt_bind_param($stmt, $types, ...$paramValues);
 
@@ -139,22 +152,18 @@ function updateUserFields($conn, $table, $userId, $params) {
 
 // Пример использования функции для обновления полей у пользователя с id
 $params = [
-  'admin' => 45
+  'admin' => 11
 ];
-$userId = 1;
+$userId = 2;
 $tableName = 'users';
-
-if (updateUserFields($conn, $tableName, $userId, $params)) {
-  echo "Поля успешно обновлены.";
-} else {
-  echo "Пользователь не найден или возникла ошибка.";
-}
+//updateUserFields($conn, $tableName, $userId, $params);
 
 
 // функция удаления запись по айдишнику
-function deleteUserById($conn, $table, $id) {
+function deleteUserById($conn, $table, $id)
+{
   $sql = "DELETE FROM $table WHERE id = ?";
-  
+
   $stmt = mysqli_prepare($conn, $sql);
 
   if ($stmt) {
@@ -170,11 +179,7 @@ function deleteUserById($conn, $table, $id) {
 
 // Пример использования функции для удаления записи из таблицы 'users' по ID
 $tableName = 'users';
-$userIdToDelete = 1; // Замените этот ID на нужный вам
+$userIdToDelete = 24; // Замените этот ID на нужный вам
 
-if (deleteUserById($conn, $tableName, $userIdToDelete)) {
-  echo "Запись успешно удалена.";
-} else {
-  echo "Ошибка при удалении записи.";
-}
+//deleteUserById($conn, $tableName, $userIdToDelete)
 ?>
