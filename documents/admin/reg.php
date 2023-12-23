@@ -24,7 +24,7 @@
   </head>
   <body>
     <div class="wrapper">
-    <?php include("./include/header.php"); ?>
+    <?php include("../include/header.php"); ?>
     <!--END HEADER-->
 
     <!--FORM-->

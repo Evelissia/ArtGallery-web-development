@@ -22,7 +22,8 @@
                   Кабинет</a>
                 <ul>
                 <li><a href="<?php echo BASE_URL?>documents/admin/log.php" title="">Админ панель</a></li>
-              <li><a href="#" title="">Выход</a></li>
+                <li><a href="<?php echo BASE_URL?>documents/admin/users.php" title="">Users</a></li>
+                <li><a href="#" title="">Выход</a></li>
                 </ul>
               </li>
             </ul>

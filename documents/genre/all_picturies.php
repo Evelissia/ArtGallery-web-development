@@ -38,9 +38,11 @@
         if (mysqli_num_rows($result) > 0) {
           while($row = mysqli_fetch_assoc($result)) {
             echo "<div class='image-item'>";
+            echo "<div class='img-container'>";
             echo "<img src='../img/" . $row["img"] . "' alt='Картина' class='img-item img-fluid'>";
-            echo "<h2>" . $row["description"] . "</h2>";
-            
+            echo "<h2 class='hidden-title'>" . $row["description"] . "</h2>";
+            echo "</div>";
+            echo "</a>";
             echo "</div>";
           }
         }

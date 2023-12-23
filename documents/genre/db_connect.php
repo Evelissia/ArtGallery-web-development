@@ -8,3 +8,4 @@
         die("Соединение не удалось: " . mysqli_connect_error());
     }
 ?>
+
