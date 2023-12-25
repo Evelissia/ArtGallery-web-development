@@ -25,11 +25,11 @@
                 <?php if (($_SESSION['admin'])): ?>
                   <li><a href="#" title="">Админ панель</a></li>
                 <?php endif; ?>
-                <li><a href="#" title="">Выход</a></li>
+                <li><a href="<?php echo BASE_URL ?>documents/admin/logout.php" title="">Выход</a></li>
               </ul>
             <?php else: ?>
               <a href="<?php echo BASE_URL ?>documents/admin/log.php">
-                <i class="fa "></i>
+                <i class="fa"></i>
                 Войти
               </a>
               <ul>

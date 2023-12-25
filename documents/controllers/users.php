@@ -3,9 +3,23 @@ include("../genre/db.php");
 
 $isSubmit = false; // проверка прохождения формы
 $errMsg = ''; //для вывода ошибок
-$regStatus = '';
+//$regStatus = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+function userAuth($user)
+{
+  $_SESSION['id'] = $user['id'];
+  $_SESSION['login'] = $user['username'];
+  $_SESSION['admin'] = $user['admin'];
+
+  if ($_SESSION['admin']) {
+    header('location: ' . BASE_URL . '/documents/admin/admin.php');
+  } else {
+    header('location: ' . BASE_URL . '/hello.php');
+  }
+}
+
+// код для регистрации
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
   $admin = 0;
   $login = trim($_POST['login']);
   $email = trim($_POST['mail']);
@@ -56,15 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       // создать параметры сессии и передать параметры, к-ые нам нужны
       $user = selectAll('users', $conn, ['id' => $id]);
 
-      $_SESSION['id'] = $user['id'];
-      $_SESSION['login'] = $user['username'];
-      $_SESSION['admin'] = $user['admin'];
-
-      if ($_SESSION['admin']) {
-        header('location: ' . BASE_URL . '/documents/admin/admin.php');
-      } else {
-        header('location: ' . BASE_URL . '/hello.php');
-      }
+      userAuth($user);
 
 
       /*echo '<pre>';
@@ -82,7 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   /*$id = insert($conn, 'users', $data);
 echo $id;*/
 } else {
-  echo 'GET';
   $login = '';
   $email = '';
 }
@@ -101,7 +106,27 @@ echo $id;*/
 print_r(var_dump($data));
 echo '</pre>';*/
 
+// код для формы авторизации
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-log'])) {
+  $email = trim($_POST['mail']);
+  $pass = trim($_POST['password']);
 
+  if ($email === '' || $pass === '') {
+    $errMsg = "Не все поля заполнены!";
+  } else {
+    $existence = selectAll('users', $conn, ['email' => $email]);
 
+    if ($existence && password_verify($pass, $existence['password'])) {
+      // рефакторинг loginUser
+      userAuth($existence);
+    } else {
+      $errMsg = "Почта либо пароль введены неверно!";
+    }
+
+  }
+
+} else {
+  $email = '';
+}
 
 ?>
