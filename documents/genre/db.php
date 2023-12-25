@@ -27,6 +27,7 @@ function selectAll($table) {
 
 tt(selectAll('users'))*/
 
+session_start();
 
 require('db_connect.php');
 

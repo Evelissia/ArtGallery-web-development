@@ -1,4 +1,5 @@
-<?php include("documents/include/path.php"); ?>
+<?php include("documents/include/path.php");
+include("documents/genre/db.php") ?>
 
 <!DOCTYPE html>
 <html lang="en">

@@ -42,19 +42,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       print_r(var_dump($data));
       echo '</pre>';
       $isSubmit = true;
-      $errMsg = '<span style="color: green;">Пользователь <strong>' . $login . '</strong> успешно зарегистрирован</span>';
-    }
 
-
-    // это само добавление в БД
-    if ($isSubmit) {
-      $id = insert($conn, 'users', $data);
-      if ($id) {
-        echo "Данные успешно добавлены. ID: " . $id;
-      } else {
-        echo "Ошибка при добавлении данных.";
+      //$errMsg = '<span style="color: green;">Пользователь <strong>' . $login . '</strong> успешно зарегистрирован</span>';
+      // это само добавление в БД
+      if ($isSubmit) {
+        $id = insert($conn, 'users', $data);
+        if ($id) {
+          echo "Данные успешно добавлены. ID: " . $id;
+        } else {
+          echo "Ошибка при добавлении данных.";
+        }
       }
+      // создать параметры сессии и передать параметры, к-ые нам нужны
+      $user = selectAll('users', $conn, ['id' => $id]);
+
+      $_SESSION['id'] = $user['id'];
+      $_SESSION['login'] = $user['username'];
+      $_SESSION['admin'] = $user['admin'];
+
+      if ($_SESSION['admin']) {
+        header('location: ' . BASE_URL . '/documents/admin/admin.php');
+      } else {
+        header('location: ' . BASE_URL . '/hello.php');
+      }
+
+
+      /*echo '<pre>';
+      print_r(var_dump($_SESSION));
+      echo '</pre>';
+      exit();*/
+      //$isSubmit = true;
     }
+
+
+
     // $id = insert($conn, 'users', $data);
   }
 

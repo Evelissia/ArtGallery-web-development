@@ -16,14 +16,29 @@
           <li><a href="<?php echo BASE_URL ?>documents/genre/all_picturies.php" title="Список картин">Картины</a></li>
 
           <li>
-            <a href="#">
-              <i class="fa fa-user"></i>
-              Кабинет</a>
-            <ul>
-              <li><a href="<?php echo BASE_URL ?>documents/admin/reg.php" title="">Админ панель</a></li>
-              <li><a href="<?php echo BASE_URL ?>documents/admin/users.php" title="">Users</a></li>
-              <li><a href="#" title="">Выход</a></li>
-            </ul>
+            <?php if (isset($_SESSION['id'])): ?>
+              <a href="#">
+                <i class="fa"></i>
+                <?php echo $_SESSION['login']; ?>
+              </a>
+              <ul>
+                <?php if (($_SESSION['admin'])): ?>
+                  <li><a href="#" title="">Админ панель</a></li>
+                <?php endif; ?>
+                <li><a href="#" title="">Выход</a></li>
+              </ul>
+            <?php else: ?>
+              <a href="<?php echo BASE_URL ?>documents/admin/log.php">
+                <i class="fa "></i>
+                Войти
+              </a>
+              <ul>
+
+                <li><a href="<?php echo BASE_URL ?>documents/admin/reg.php" title="">Регистрация</a></li>
+              </ul>
+
+            <?php endif; ?>
+
           </li>
         </ul>
       </nav>
