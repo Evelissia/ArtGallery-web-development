@@ -1,0 +1,92 @@
+<?php session_start();
+include("../../include/path.php")
+  ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Описание галереии">
+
+  <!--Bootstrap CSS-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Kalnia:wght@400;600&family=Noto+Sans:wght@300;400;500;700&family=PT+Sans+Caption:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <!--Font Awesome-->
+  <script src="https://kit.fontawesome.com/3ace3ebe9b.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/admin.css">
+  <link rel="shortcut icon" href="/documents/img/favicon.ico" type="image/x-icon">
+  <title>Галерея живописи</title>
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <?php include("../../include/header-admin.php"); ?>
+
+    <div class="container">
+      <div class="row">
+        <div class="sidebar col-3">
+          <ul>
+            <li>
+              <a href="#">Записи</a>
+            </li>
+            <li>
+              <a href="#">Пользователи</a>
+            </li>
+            <li>
+              <a href="#">Категории</a>
+            </li>
+          </ul>
+        </div>
+        <div class="posts col-9">
+          <div class="button row">
+            <a href="create.php" class="col-3 btn btn-success">Создать категорию</a>
+            <span class="col-1"></span>
+            <a href="index.php" class="col-3 btn btn-warning">Редактировать категорию</a>
+          </div>
+          <div class="row title-table">
+            <h1>Создать жанр</h1>
+
+          </div>
+          <div class="row add-post">
+            <form action="create.php" method="post">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Название жанра" aria-label="Название жанра">
+              </div>
+              <div class="col">
+                <label for="content" class="form-label">Описание жанра</label>
+                <textarea class="form-control" id="content" rows="3"></textarea>
+              </div>
+              <div class="input-group col">
+                <input type="file" class="form-control" id="inputGroupFile02">
+                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+              </div>
+
+              <div class="col">
+                <button class="btn btn-primary" type="submit">Сохранить жанр</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <?php include("../../include/footer.php"); ?>
+
+</body>
+
+</html>

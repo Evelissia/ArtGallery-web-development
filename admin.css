@@ -1,0 +1,215 @@
+/* обнуление */
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: 'Comfortaa', cursive;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  color: #000000;
+}
+ul, 
+ol,
+li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+html,
+body {
+  height: 100%;
+  line-height: 1;
+  font-size: 16px;
+  background: rgb(243, 243, 243);
+}
+
+/*
+        HEADER MENU
+        */
+        header {
+          background: rgb(234, 234, 234);
+          height: 80px;
+          position: sticky;
+          top: 0;
+          z-index: 5;
+        }
+        
+        header * {
+          color: #000000;
+        }
+        
+        header h1 {
+          margin-top: 20px;
+        }
+        
+        header h1 a:hover {
+          
+        }
+        
+        .logo {
+          text-decoration: none;
+          margin-left: 5px;
+          font-size: 25px;
+        }
+        .logo a:hover {
+          text-decoration: none;
+        }
+        .logoo{
+          
+          text-decoration: none;
+          font-size: 25px;
+        }
+        .gallery-image {
+          width: 30px;  
+          height: 30px; 
+          object-fit: cover;
+          margin-right: 10px;
+        }
+        
+        header ul {
+          list-style-type: none;
+          float: right;
+        }
+         
+        header ul li {
+          float: left;
+          position: relative;
+        }
+        
+        header ul li a {
+          display: block;
+          font-size: 1rem;
+          padding: 20px;
+          margin-top: 13px;
+        }
+        
+        header ul li a:hover {
+          background: #291515;
+          transition: 0.5s;
+          color: #fff;
+        }
+        
+        header ul li ul {
+          position: absolute;
+          top: 70px;
+          right: 0;
+          width: 150px;
+          display: none;
+          z-index: 88888;
+        }
+        
+        header ul li:hover ul  {
+          display: block;
+        }
+        
+        header ul li ul li {
+          width: 100%;
+        }
+        
+        header ul li ul a {
+          padding: 10px;
+          background: white;
+          color: #5b5555;
+        }
+
+
+/* FOOTER */
+.footer {
+  background: rgb(234, 234, 234);
+  color: #000000;
+  text-align: center;
+  padding: 40px;
+  bottom: 0;
+  width: 100%;
+}
+
+/*SIDEBAR*/
+.sidebar {
+  margin: 1rem 0;
+  background: #5b5555;
+  min-height: 600px;
+}
+
+.sidebar ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  color: #ffffff;
+}
+
+.sidebar ul a {
+  padding: 18px;
+  display: block;
+  border-bottom: 1px solid #291515;
+}
+.sidebar a {
+  color: #000; /* Цвет ссылок */
+  text-decoration: none; /* Убираем подчеркивание */
+  display: block; /* Разрываем строки */
+  padding: 8px 16px; /* Подобные отступы создают область для нажатия */
+}
+
+.sidebar ul a:hover{
+  padding-left: 10px;
+  transition: all 0 3s;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.posts {
+  height: 100%;
+  padding: 40px 100px 100px;
+  overflow-y: scroll;
+}
+ 
+.posts h1 {
+  text-align: center;
+  margin: 1.5rem 0;
+  margin: 2rem 0 0 0.5rem;
+  font-weight: bold;
+}
+
+.posts .title-table div {
+  
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #b5b3b3;
+  font-weight: 700;
+  
+}
+
+.posts .post div {
+  background: #dfdfdf;
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #fff;
+  
+}
+
+.posts .post .red {
+  color: #0b5e20;
+}
+
+.posts .post .del {
+  color: #e10101;
+}
+
+.posts .post .id {
+  font-weight: bold;
+}
+
+.add-post form div {
+  margin: 2rem 0;
+}
