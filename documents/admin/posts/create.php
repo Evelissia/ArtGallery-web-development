@@ -36,27 +36,16 @@ include("../../include/path.php")
 
     <div class="container">
       <div class="row">
-        <div class="sidebar col-3">
-          <ul>
-            <li>
-              <a href="#">Записи</a>
-            </li>
-            <li>
-              <a href="#">Пользователи</a>
-            </li>
-            <li>
-              <a href="#">Категории</a>
-            </li>
-          </ul>
-        </div>
+        <?php include "../../include/sidebar-admin.php" ?>
         <div class="posts col-9">
           <div class="button row">
-            <a href="create.php" class="col-3 btn btn-success">Add Post</a>
+            <a href="<?= BASE_URL . "documents/admin/posts/create.php"; ?>" class="col-3 btn btn-success">Создать</a>
             <span class="col-1"></span>
-            <a href="index.php" class="col-3 btn btn-warning">Manage Posts</a>
+            <a href="<?= BASE_URL . "documents/admin/posts/index.php"; ?>" class="col-3 btn
+              btn-warning">Управление</a>
           </div>
           <div class="row title-table">
-            <h1>Добавление записи</h1>
+            <h1>Добавление картины</h1>
 
           </div>
           <div class="row add-post">

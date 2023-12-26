@@ -39,35 +39,36 @@ include("../../include/path.php")
         <?php include "../../include/sidebar-admin.php" ?>
         <div class="posts col-9">
           <div class="button row">
-            <a href="<?= BASE_URL . "documents/admin/users/create.php"; ?>" class="col-3 btn btn-success">Создать</a>
+            <a href="<?= BASE_URL . "documents/admin/authors/create.php"; ?>" class="col-3 btn btn-success">Создать</a>
             <span class="col-1"></span>
-            <a href="<?= BASE_URL . "documents/admin/users/index.php"; ?>" class="col-3 btn btn-warning">Управление</a>
+            <a href="<?= BASE_URL . "documents/admin/authors/index.php"; ?>"
+              class="col-3 btn btn-warning">Управление</a>
           </div>
           <div class="row title-table">
-            <h1>Управление пользователями</h1>
+            <h1>Управление авторами</h1>
             <div class="id col-1">ID</div>
-            <div class="title col-5">Логин</div>
-            <div class="image col-2">Роль</div>
+            <div class="title col-5">Название</div>
+            <!--<div class="image col-2">Картина</div>-->
             <div class="red col-4">Управление</div>
           </div>
           <div class="row post">
             <div class="id col-1">1</div>
-            <div class="title col-5">Вика</div>
-            <div class="image col-2">Admin</div>
+            <div class="title col-5">Какой-то автор</div>
+            <div class="image col-2">Изображение</div>
             <div class="red col-2"><a href="#">edit</a></div>
             <div class="del col-2"><a href="#">delete</a></div>
           </div>
           <div class="row post">
-            <div class="id col-1">2</div>
-            <div class="title col-5">Таня</div>
-            <div class="image col-2">Admin</div>
+            <div class="id col-1">1</div>
+            <div class="title col-5">Какой-то автор</div>
+            <div class="image col-2">Изображение</div>
             <div class="red col-2"><a href="#">edit</a></div>
             <div class="del col-2"><a href="#">delete</a></div>
           </div>
           <div class="row post">
-            <div class="id col-1">3</div>
-            <div class="title col-5">Вова</div>
-            <div class="image col-2">Admin</div>
+            <div class="id col-1">1</div>
+            <div class="title col-5">Какой-то автор</div>
+            <div class="image col-2">Изображение</div>
             <div class="red col-2"><a href="#">edit</a></div>
             <div class="del col-2"><a href="#">delete</a></div>
           </div>

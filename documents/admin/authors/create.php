@@ -39,38 +39,32 @@ include("../../include/path.php")
         <?php include "../../include/sidebar-admin.php" ?>
         <div class="posts col-9">
           <div class="button row">
-            <a href="<?= BASE_URL . "documents/admin/users/create.php"; ?>" class="col-3 btn btn-success">Создать</a>
+            <a href="<?= BASE_URL . "documents/admin/authors/create.php"; ?>" class="col-3 btn btn-success">Создать</a>
             <span class="col-1"></span>
-            <a href="<?= BASE_URL . "documents/admin/users/index.php"; ?>" class="col-3 btn btn-warning">Управление</a>
+            <a href="<?= BASE_URL . "documents/admin/authors/index.php"; ?>"
+              class="col-3 btn btn-warning">Управление</a>
           </div>
           <div class="row title-table">
-            <h1>Управление пользователями</h1>
-            <div class="id col-1">ID</div>
-            <div class="title col-5">Логин</div>
-            <div class="image col-2">Роль</div>
-            <div class="red col-4">Управление</div>
+            <h1>Создать автора</h1>
+
           </div>
-          <div class="row post">
-            <div class="id col-1">1</div>
-            <div class="title col-5">Вика</div>
-            <div class="image col-2">Admin</div>
-            <div class="red col-2"><a href="#">edit</a></div>
-            <div class="del col-2"><a href="#">delete</a></div>
+          <div class="row add-post">
+            <form action="create.php" method="post">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Имя автора" aria-label="Имя автора">
+              </div>
+
+              <div class="input-group col">
+                <input type="file" class="form-control" id="inputGroupFile02">
+                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+              </div>
+
+              <div class="col">
+                <button class="btn btn-primary" type="submit">Сохранить автора</button>
+              </div>
+            </form>
           </div>
-          <div class="row post">
-            <div class="id col-1">2</div>
-            <div class="title col-5">Таня</div>
-            <div class="image col-2">Admin</div>
-            <div class="red col-2"><a href="#">edit</a></div>
-            <div class="del col-2"><a href="#">delete</a></div>
-          </div>
-          <div class="row post">
-            <div class="id col-1">3</div>
-            <div class="title col-5">Вова</div>
-            <div class="image col-2">Admin</div>
-            <div class="red col-2"><a href="#">edit</a></div>
-            <div class="del col-2"><a href="#">delete</a></div>
-          </div>
+
         </div>
       </div>
     </div>
