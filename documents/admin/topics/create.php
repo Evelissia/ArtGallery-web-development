@@ -1,6 +1,7 @@
 <?php session_start();
-include("../../include/path.php")
-  ?>
+include("../../include/path.php");
+include("../../controllers/topics.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,21 +51,19 @@ include("../../include/path.php")
 
           </div>
           <div class="row add-post">
-            <form action="create.php" method="post">
+            <form action="create.php" method="post" enctype="multipart/form-data">
               <div class="col">
-                <input type="text" class="form-control" placeholder="Название жанра" aria-label="Название жанра">
+                <input name="genre" type="text" class="form-control" placeholder="Название жанра"
+                  aria-label="Название жанра">
               </div>
-              <div class="col">
-                <label for="content" class="form-label">Описание жанра</label>
-                <textarea class="form-control" id="content" rows="3"></textarea>
-              </div>
+
               <div class="input-group col">
-                <input type="file" class="form-control" id="inputGroupFile02">
+                <input name="img" type="file" class="form-control" id="inputGroupFile02">
                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
               </div>
 
               <div class="col">
-                <button class="btn btn-primary" type="submit">Сохранить жанр</button>
+                <button name="genre-create" class="btn btn-primary" type="submit">Сохранить жанр</button>
               </div>
             </form>
           </div>

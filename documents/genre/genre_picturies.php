@@ -33,7 +33,7 @@
 
 
     <?php
-    require_once '../genre/db_connect.php';
+    require_once '../database/db_connect.php';
     // Получение ID жанра из URL-параметра
     $genreId = $_GET['id'];
 

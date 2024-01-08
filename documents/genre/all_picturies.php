@@ -37,7 +37,7 @@
     <div class="image-container">
       <h1 style="width: 100%; text-align: center; margin-top: 30px;">Картины:</h1>
       <?php
-      require_once 'db_connect.php';
+      require_once '../database/db_connect.php';
       $sql = "SELECT * FROM images";
       $result = mysqli_query($conn, $sql);
       if (mysqli_num_rows($result) > 0) {

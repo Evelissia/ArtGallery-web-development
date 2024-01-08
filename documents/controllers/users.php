@@ -1,5 +1,5 @@
 <?php
-include("../genre/db.php");
+include("../database/db.php");
 
 $isSubmit = false; // проверка прохождения формы
 $errMsg = ''; //для вывода ошибок
@@ -26,8 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
   $passF = trim($_POST['pass-first']);
   $passS = trim($_POST['pass-second']);
 
-
-
   if ($login === '' || $email === '' || $passF === '') {
     $errMsg = "Не все поля заполнены!";
   } elseif (mb_strlen($login, 'UTF8') < 2) {
@@ -51,12 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
         'pass-second' => $hashedPassword,
         'admin' => 0*/
       ];
-
       echo '<pre>';
       print_r(var_dump($data));
       echo '</pre>';
       $isSubmit = true;
-
       //$errMsg = '<span style="color: green;">Пользователь <strong>' . $login . '</strong> успешно зарегистрирован</span>';
       // это само добавление в БД
       if ($isSubmit) {
@@ -69,19 +65,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
       }
       // создать параметры сессии и передать параметры, к-ые нам нужны
       $user = selectAll('users', $conn, ['id' => $id]);
-
       userAuth($user);
-
-
       /*echo '<pre>';
       print_r(var_dump($_SESSION));
       echo '</pre>';
       exit();*/
       //$isSubmit = true;
     }
-
-
-
     // $id = insert($conn, 'users', $data);
   }
 
@@ -91,7 +81,6 @@ echo $id;*/
   $login = '';
   $email = '';
 }
-
 // очистка полей с данными от лишних пробелов
 
 //$pass = password_hash($_POST['pass-second'], PASSWORD_DEFAULT);
@@ -100,7 +89,6 @@ echo $id;*/
 // это массив самих данных
 
 // вызов ф-ции к-ая будет записывать в базу данных этот массив данных
-
 
 /*echo '<pre>';
 print_r(var_dump($data));
@@ -115,7 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-log'])) {
     $errMsg = "Не все поля заполнены!";
   } else {
     $existence = selectAll('users', $conn, ['email' => $email]);
-
     if ($existence && password_verify($pass, $existence['password'])) {
       // рефакторинг loginUser
       userAuth($existence);
@@ -124,9 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-log'])) {
     }
 
   }
-
 } else {
   $email = '';
 }
-
 ?>

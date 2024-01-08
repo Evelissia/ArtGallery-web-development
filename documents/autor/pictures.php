@@ -34,7 +34,7 @@
 
 
     <?php
-    require_once '../genre/db_connect.php';
+    require_once '../database/db_connect.php';
     // Получение ID автора из URL-параметра
     $authorId = $_GET['id'];
 

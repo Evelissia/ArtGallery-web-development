@@ -29,7 +29,7 @@ tt(selectAll('users'))*/
 
 session_start();
 
-require('db_connect.php');
+include('db_connect.php');
 
 // Функция для вывода данных в формате tt
 function tt($value)

@@ -38,7 +38,7 @@
         <h1 style="width: 100%; text-align: center;">Авторы:</h1>
 
         <?php
-        require_once '../genre/db_connect.php';
+        require_once '../database/db_connect.php';
         $sql = "SELECT * FROM author";
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) > 0) {

@@ -42,7 +42,7 @@ include("../../include/path.php")
             <a href="<?= BASE_URL . "documents/admin/topics/create.php"; ?>" class="col-3 btn btn-success">Создать
               жанр</a>
             <span class="col-1"></span>
-            <a href="<?= BASE_URL . "documents/admin/posts/index.php"; ?>" class="col-3 btn btn-warning">Управление
+            <a href="<?= BASE_URL . "documents/admin/topics/index.php"; ?>" class="col-3 btn btn-warning">Управление
               жанрами</a>
           </div>
           <div class="row title-table">

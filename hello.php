@@ -1,5 +1,5 @@
 <?php include("documents/include/path.php");
-include("documents/genre/db.php") ?>
+include("documents/database/db.php") ?>
 
 <!DOCTYPE html>
 <html lang="en">
