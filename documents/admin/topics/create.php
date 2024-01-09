@@ -51,14 +51,19 @@ include("../../controllers/topics.php");
 
           </div>
           <div class="row add-post">
+            <div class="mb-12 col-12 col-md-12 err">
+              <p>
+                <?= $errMsg ?>
+              </p>
+            </div>
             <form action="create.php" method="post" enctype="multipart/form-data">
               <div class="col">
-                <input name="genre" type="text" class="form-control" placeholder="Название жанра"
+                <input name="genre" value="<?= $genre; ?>" type="text" class="form-control" placeholder="Название жанра"
                   aria-label="Название жанра">
               </div>
 
               <div class="input-group col">
-                <input name="img" type="file" class="form-control" id="inputGroupFile02">
+                <input name="img" value="<?= $img; ?>" type="file" class="form-control" id="inputGroupFile02">
                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
               </div>
 

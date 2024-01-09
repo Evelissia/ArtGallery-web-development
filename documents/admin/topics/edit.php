@@ -1,6 +1,5 @@
 <?php session_start();
 include("../../include/path.php");
-
 include("../../controllers/topics.php");
 ?>
 
@@ -39,49 +38,45 @@ include("../../controllers/topics.php");
     <div class="container">
       <div class="row">
         <?php include "../../include/sidebar-admin.php" ?>
-
-
-
         <div class="posts col-9">
-          <div class="button row">
-            <a href="<?= BASE_URL . "documents/admin/topics/create.php"; ?>" class="col-3 btn btn-success">Создать
-              жанр</a>
-            <span class="col-1"></span>
-            <a href="<?= BASE_URL . "documents/admin/topics/index.php"; ?>" class="col-3 btn btn-warning">Управление
-              жанрами</a>
-          </div>
-          <div class="row title-table">
-
-            <h1>Управление жанрами</h1>
-            <div class="id col-1">ID</div>
-            <div class="title col-5">Название</div>
-            <!--<div class="image col-2">Картина</div>-->
-            <div class="red col-4">Управление</div>
-          </div>
-          <?php foreach ($topics as $key => $topic): ?>
-            <div class="row post">
-              <div class="id col-1">
-                <?= $key + 1; ?>
-              </div>
-              <div class="title col-5">
-                <?= $topic['genre']; ?>
-              </div>
-              <!--<div class="image col-2">
-                <?= $topic['img']; ?>
-              </div>-->
-              <div class="red col-2"><a href="edit.php?id=<?= $topic['id']; ?>">edit</a></div>
-              <div class="del col-2"><a href="edit.php?del_id=<?= $topic['id']; ?>">delete</a></div>
+          <!-- ... (Your existing content) ... -->
+          <div class="row add-post">
+            <div class="mb-12 col-12 col-md-12 err">
+              <p>
+                <?= $errMsg ?>
+              </p>
             </div>
-          <?php endforeach; ?>
+            <form action="edit.php" method="post" enctype="multipart/form-data">
+              <input name="id" value="<?= $id; ?>" type="hidden">
+              <div class="col">
+                <input name="genre" value="<?= $genre; ?>" type="text" class="form-control" placeholder="Название жанра"
+                  aria-label="Название жанра">
+              </div>
+
+              <?php if (!empty($img)): ?>
+                <div class="col">
+                  <img src="<?= BASE_URL . 'documents/img/' . $img; ?>" alt="Current Image"
+                    style="max-width: 200px; margin-top: 10px;">
+                </div>
+              <?php endif; ?>
+
+              <div class="input-group col">
+                <input name="img" type="file" class="form-control" id="inputGroupFile02">
+                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+              </div>
+
+              <div class="col">
+                <button name="genre-edit" class="btn btn-primary" type="submit">Обновить жанр</button>
+              </div>
+            </form>
+          </div>
 
         </div>
       </div>
     </div>
-
-
   </div>
-  <?php include("../../include/footer.php"); ?>
 
+  <?php include("../../include/footer.php"); ?>
 </body>
 
 </html>

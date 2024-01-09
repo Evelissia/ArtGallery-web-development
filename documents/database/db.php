@@ -83,6 +83,35 @@ $params = [
   'username' => 'VV'
 ];
 
+function allGenre($table, $conn, $params = [])
+{
+  if (!empty($params)) {
+    $sql = "SELECT * FROM $table WHERE ";
+    $conditions = [];
+
+    foreach ($params as $key => $value) {
+      $conditions[] = "$key = '$value'";
+    }
+
+    $sql .= implode(' AND ', $conditions);
+  } else {
+    $sql = "SELECT * FROM $table";
+  }
+
+  $result = mysqli_query($conn, $sql);
+
+  dbCheckError($conn); // Проверяем ошибку запроса
+
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+
+  mysqli_free_result($result);
+
+  return $rows; // Возвращаем все записи
+}
+
 // Запись в таблицу БД
 function insert($conn, $table, $data = [])
 {
@@ -116,7 +145,7 @@ $data = [
 
 
 // обновление строки в таблице
-function updateUserFields($conn, $table, $userId, $params)
+function update($conn, $table, $userId, $params)
 {
   $sql = "UPDATE $table SET ";
   $updates = [];

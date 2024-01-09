@@ -1,6 +1,7 @@
 <?php session_start();
-include("../../include/path.php")
-  ?>
+include("../../include/path.php");
+include("../../controllers/authors.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,18 +50,19 @@ include("../../include/path.php")
 
           </div>
           <div class="row add-post">
-            <form action="create.php" method="post">
+            <form action="create.php" method="post" enctype="multipart/form-data">
               <div class="col">
-                <input type="text" class="form-control" placeholder="Имя автора" aria-label="Имя автора">
+                <input name="name" value="" type="text" class="form-control" placeholder="Имя автора"
+                  aria-label="Имя автора">
               </div>
 
               <div class="input-group col">
-                <input type="file" class="form-control" id="inputGroupFile02">
+                <input name="img" value="" type="file" class="form-control" id="inputGroupFile02">
                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
               </div>
 
               <div class="col">
-                <button class="btn btn-primary" type="submit">Сохранить автора</button>
+                <button name="author_create" class="btn btn-primary" type="submit">Сохранить автора</button>
               </div>
             </form>
           </div>

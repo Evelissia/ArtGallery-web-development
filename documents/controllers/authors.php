@@ -1,29 +1,29 @@
 <?php
-//session_start();
+
 // Используем абсолютный путь к файлу db.php
 include(DOCUMENTS_BASE_PATH . 'database/db.php');
 
 $errMsg = '';
 $id = '';
-$genre = '';
+$name = '';
 $img = '';
-$topics = allGenre('genre', $conn, []);
+$authors = allGenre('author', $conn, []);
 
 //$genres = selectAll($conn, 'genre');
 
 // код для формы создания жанра
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-create'])) {
-  $genre = trim($_POST['genre']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['author_create'])) {
+  $name = trim($_POST['name']);
   $img = $_FILES['img']['name']; // Обработка изображения
   $img_tmp = $_FILES['img']['tmp_name']; // Временное имя файла
 
-  if ($genre === '' || $img === '') {
+  if ($name === '' || $img === '') {
     $errMsg = "Не все поля заполнены!";
-  } elseif (mb_strlen($genre, 'UTF8') < 2) {
+  } elseif (mb_strlen($name, 'UTF8') < 2) {
     $errMsg = "Жанр должен быть более 2-х символов!";
   } else {
     // Проверка на существование жанра в базе
-    $userExists = selectAll('genre', $conn, ['genre' => $genre]);
+    $userExists = selectAll('genre', $conn, ['genre' => $name]);
 
     if ($userExists) {
       $errMsg = "Такой жанр в базе уже существует.";
@@ -33,13 +33,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-create'])) {
 
       // Копирование изображения из временной директории в нужную папку
       if (move_uploaded_file($img_tmp, $upload_path)) {
-        $genres = [
-          'genre' => $genre,
+        $author = [
+          'genre' => $name,
           'img' => $img
         ];
 
         // Добавление жанра в базу данных
-        $id = insert($conn, 'genre', $genres);
+        $id = insert($conn, 'genre', $author);
 
         if ($id) {
           // В случае успешного добавления
@@ -55,14 +55,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-create'])) {
     }
   }
 } else {
-  $genre = '';
+  $name = '';
   $img = '';
 }
 
 /*echo '<pre>';
 print_r(var_dump($data));
 echo '</pre>';*/
-
+exit();
 // Редактирование жанра
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
   $id = $_GET['id'];
