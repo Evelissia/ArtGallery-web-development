@@ -1,6 +1,4 @@
 <?php
-
-// Используем абсолютный путь к файлу db.php
 include(DOCUMENTS_BASE_PATH . 'database/db.php');
 
 $errMsg = '';
@@ -9,12 +7,54 @@ $name = '';
 $img = '';
 $authors = allGenre('author', $conn, []);
 
-//$genres = selectAll($conn, 'genre');
-
-// код для формы создания жанра
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['author_create'])) {
   $name = trim($_POST['name']);
-  $img = $_FILES['img']['name']; // Обработка изображения
+  $img = $_FILES['img']['name'];
+  $img_tmp = $_FILES['img']['tmp_name'];
+  // Проверки на ввод данных (пустые поля, длина имени и пр.)
+  // код проверок
+  if ($name === '' || $img === '') {
+    $errMsg = "Не все поля заполнены!";
+  } elseif (mb_strlen($name, 'UTF8') < 2) {
+    $errMsg = "Имя автора должно содержать более 2-х символов!";
+  } else {
+    $authorExists = selectAll('author', $conn, ['name' => $name]);
+
+    if ($authorExists) {
+      $errMsg = "Такой автор уже существует.";
+    } else {
+      $upload_path = 'D:/Programs/Ampps/Ampps/www/documents/img/' . $img;
+
+      if (move_uploaded_file($_FILES['img']['tmp_name'], $upload_path)) {
+        $authorData = [
+          'name' => $name,
+          'img' => $img
+        ];
+
+        $id = insert($conn, 'author', $authorData);
+
+        if ($id) {
+          $errMsg = "Данные успешно добавлены. ID: " . $id;
+        } else {
+          $errMsg = "Ошибка при добавлении данных. Ошибка MySQL: " . mysqli_error($conn);
+        }
+      } else {
+        $errMsg = "Ошибка при загрузке изображения.";
+      }
+    }
+  }
+} elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
+  // Редактирование автора
+  $id = $_GET['id'];
+  $author = selectAll('author', $conn, ['id' => $id]);
+  $name = $author['name'];
+  $img = $author['img'];
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['author-edit'])) {
+
+  $name = trim($_POST['name']);
+  $img = $_FILES['img']['name'];
   $img_tmp = $_FILES['img']['tmp_name']; // Временное имя файла
 
   if ($name === '' || $img === '') {
@@ -22,87 +62,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['author_create'])) {
   } elseif (mb_strlen($name, 'UTF8') < 2) {
     $errMsg = "Жанр должен быть более 2-х символов!";
   } else {
-    // Проверка на существование жанра в базе
-    $userExists = selectAll('genre', $conn, ['genre' => $name]);
-
-    if ($userExists) {
-      $errMsg = "Такой жанр в базе уже существует.";
-    } else {
-      // Путь к папке, куда нужно сохранить изображение
-      $upload_path = 'D:/Programs/Ampps/Ampps/www/documents/img/' . $img;
-
-      // Копирование изображения из временной директории в нужную папку
-      if (move_uploaded_file($img_tmp, $upload_path)) {
-        $author = [
-          'genre' => $name,
-          'img' => $img
-        ];
-
-        // Добавление жанра в базу данных
-        $id = insert($conn, 'genre', $author);
-
-        if ($id) {
-          // В случае успешного добавления
-          $errMsg = "Данные успешно добавлены. ID: " . $id;
-        } else {
-          // В случае ошибки при добавлении
-          $errMsg = "Ошибка при добавлении данных. Ошибка MySQL: " . mysqli_error($conn);
-        }
-      } else {
-        // В случае ошибки при копировании изображения
-        $errMsg = "Ошибка при загрузке изображения.";
-      }
-    }
-  }
-} else {
-  $name = '';
-  $img = '';
-}
-
-/*echo '<pre>';
-print_r(var_dump($data));
-echo '</pre>';*/
-exit();
-// Редактирование жанра
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
-  $id = $_GET['id'];
-  $topic = selectAll('genre', $conn, ['id' => $id]);
-  $id = $topic['id'];
-  $genre = $topic['genre'];
-  $img = $topic['img'];
-}
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-edit'])) {
-
-
-
-  $genre = trim($_POST['genre']);
-  $img = $_FILES['img']['name']; // Обработка изображения
-  $img_tmp = $_FILES['img']['tmp_name']; // Временное имя файла
-
-  if ($genre === '' || $img === '') {
-    $errMsg = "Не все поля заполнены!";
-  } elseif (mb_strlen($genre, 'UTF8') < 2) {
-    $errMsg = "Жанр должен быть более 2-х символов!";
-  } else {
-    // Проверка на существование жанра в базе
+    // Проверка на существование автора в базе
     //$userExists = selectAll('genre', $conn, ['genre' => $genre]);
-
-
     // Путь к папке, куда нужно сохранить изображение
     $upload_path = 'D:/Programs/Ampps/Ampps/www/documents/img/' . $img;
 
     // Копирование изображения из временной директории в нужную папку
     if (move_uploaded_file($img_tmp, $upload_path)) {
-      $genres = [
-        'genre' => $genre,
+      $authors = [
+        'name' => $name,
         'img' => $img
       ];
 
       // Добавление жанра в базу данных
       $id = $_POST['id'];
-      $genre_id = update($conn, 'genre', $id, $genres);
+      $author_id = update($conn, 'author', $id, $authors);
       if ($id) {
         // В случае успешного добавления
         $errMsg = "Данные успешно добавлены. ID: " . $id;
@@ -118,16 +92,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-edit'])) {
   }
 }
 
+// КОНЧАЕТСЯ ЭДИТ
 
-// Удаление жанра
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_id'])) {
+  // Удаление автора
   $id = $_GET['del_id'];
-
-  deleteUserById($conn, 'genre', $id);
-
-  header('location' . BASE_URL . 'documents/admin/topics/index.php');
-
+  deleteUserById($conn, 'author', $id);
+  header('location: ' . BASE_URL . 'documents/admin/authors/index.php');
 }
-
-
 ?>

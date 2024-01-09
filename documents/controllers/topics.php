@@ -75,8 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-edit'])) {
 
-
-
   $genre = trim($_POST['genre']);
   $img = $_FILES['img']['name']; // Обработка изображения
   $img_tmp = $_FILES['img']['tmp_name']; // Временное имя файла
@@ -88,8 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-edit'])) {
   } else {
     // Проверка на существование жанра в базе
     //$userExists = selectAll('genre', $conn, ['genre' => $genre]);
-
-
     // Путь к папке, куда нужно сохранить изображение
     $upload_path = 'D:/Programs/Ampps/Ampps/www/documents/img/' . $img;
 
@@ -117,6 +113,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-edit'])) {
 
   }
 }
+
+// КОНЧАЕТСЯ ЭДИТ
 
 
 // Удаление жанра

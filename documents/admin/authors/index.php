@@ -1,6 +1,7 @@
 <?php session_start();
-include("../../include/path.php")
-  ?>
+include("../../include/path.php");
+include("../../controllers/authors.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,34 +48,26 @@ include("../../include/path.php")
           <div class="row title-table">
             <h1>Управление авторами</h1>
             <div class="id col-1">ID</div>
-            <div class="title col-5">Название</div>
-            <!--<div class="image col-2">Картина</div>-->
+            <div class="title col-5">Имя автора</div>
             <div class="red col-4">Управление</div>
           </div>
-          <div class="row post">
-            <div class="id col-1">1</div>
-            <div class="title col-5">Какой-то автор</div>
-            <div class="image col-2">Изображение</div>
-            <div class="red col-2"><a href="#">edit</a></div>
-            <div class="del col-2"><a href="#">delete</a></div>
-          </div>
-          <div class="row post">
-            <div class="id col-1">1</div>
-            <div class="title col-5">Какой-то автор</div>
-            <div class="image col-2">Изображение</div>
-            <div class="red col-2"><a href="#">edit</a></div>
-            <div class="del col-2"><a href="#">delete</a></div>
-          </div>
-          <div class="row post">
-            <div class="id col-1">1</div>
-            <div class="title col-5">Какой-то автор</div>
-            <div class="image col-2">Изображение</div>
-            <div class="red col-2"><a href="#">edit</a></div>
-            <div class="del col-2"><a href="#">delete</a></div>
-          </div>
+
+          <?php foreach ($authors as $key => $author): ?>
+            <div class="row post">
+              <div class="id col-1">
+                <?= $key + 1; ?>
+              </div>
+              <div class="title col-5">
+                <?= $author['name']; ?>
+              </div>
+              <div class="red col-2"><a href="edit.php?id=<?= $author['id']; ?>">edit</a></div>
+              <div class="del col-2"><a href="edit.php?del_id=<?= $author['id']; ?>">delete</a></div>
+            </div>
+          <?php endforeach; ?>
         </div>
       </div>
     </div>
+  </div>
 
 
   </div>
