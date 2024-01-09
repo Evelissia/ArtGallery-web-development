@@ -1,5 +1,6 @@
 <?php
 //session_start();
+// Используем абсолютный путь к файлу db.php
 include(DOCUMENTS_BASE_PATH . 'database/db.php');
 
 $errMsg = '';
@@ -7,6 +8,9 @@ $id = '';
 $genre = '';
 $img = '';
 $topics = allGenre('genre', $conn, []);
+
+//$genres = selectAll($conn, 'genre');
+
 // код для формы создания жанра
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-create'])) {
   $genre = trim($_POST['genre']);
@@ -64,10 +68,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
   $genre = $topic['genre'];
   $img = $topic['img'];
 }
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-edit'])) {
 
   $genre = trim($_POST['genre']);
-  $img = $_FILES['img']['name'];
+  $img = $_FILES['img']['name']; // Обработка изображения
   $img_tmp = $_FILES['img']['tmp_name']; // Временное имя файла
 
   if ($genre === '' || $img === '') {
@@ -79,12 +85,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-edit'])) {
     //$userExists = selectAll('genre', $conn, ['genre' => $genre]);
     // Путь к папке, куда нужно сохранить изображение
     $upload_path = 'D:/Programs/Ampps/Ampps/www/documents/img/' . $img;
+
     // Копирование изображения из временной директории в нужную папку
     if (move_uploaded_file($img_tmp, $upload_path)) {
       $genres = [
         'genre' => $genre,
         'img' => $img
       ];
+
       // Добавление жанра в базу данных
       $id = $_POST['id'];
       $genre_id = update($conn, 'genre', $id, $genres);
@@ -96,6 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-edit'])) {
     } else {
       $errMsg = "Ошибка при загрузке изображения.";
     }
+
   }
 }
 // Удаление жанра

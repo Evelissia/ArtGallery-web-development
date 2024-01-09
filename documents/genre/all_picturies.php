@@ -20,7 +20,7 @@
   <meta property="og:description" content="На этой странице представлены картины известных художников">
   <link rel="shortcut icon" href="/documents/img/favicon.ico" type="image/x-icon">
   <script src="https://kit.fontawesome.com/3ace3ebe9b.js" crossorigin="anonymous"></script>
-
+  <script src="../../menu.js"></script>
   <link rel="stylesheet" href="/st.css">
   <link rel="stylesheet" href="/documents/genre/styleBtn.css">
   <title>Все картины</title>

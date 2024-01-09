@@ -53,16 +53,21 @@ include("../../include/path.php")
               <div class="col">
                 <input type="text" class="form-control" placeholder="title" aria-label="Название картины">
               </div>
-              <div class="col">
-                <label for="content" class="form-label">Содержимое записи</label>
-                <textarea class="form-control" id="content" rows="6"></textarea>
-              </div>
+
               <div class="input-group col">
                 <input type="file" class="form-control" id="inputGroupFile02">
                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
               </div>
               <select class="form-select" aria-label="Default select example">
-                <option selected>Open this select menu</option>
+                <option selected>Выберите автора</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+
+              <div class="w-100"></div>
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Выберите жанр</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>

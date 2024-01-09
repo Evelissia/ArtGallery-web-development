@@ -18,7 +18,7 @@
     rel="stylesheet">
   <!--Font Awesome-->
   <script src="https://kit.fontawesome.com/3ace3ebe9b.js" crossorigin="anonymous"></script>
-
+  <script src="../../menu.js"></script>
 
   <meta property="og:title" content="Известные художники">
   <meta property="og:description" content="На этой странице представлены имена известных художников">

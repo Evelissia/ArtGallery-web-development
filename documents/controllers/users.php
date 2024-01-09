@@ -2,9 +2,7 @@
 include("../database/db.php");
 
 $isSubmit = false; // проверка прохождения формы
-$errMsg = ''; //для вывода ошибок
-//$regStatus = '';
-
+$errMsg = '';
 function userAuth($user)
 {
   $_SESSION['id'] = $user['id'];
@@ -17,7 +15,6 @@ function userAuth($user)
     header('location: ' . BASE_URL . '/hello.php');
   }
 }
-
 // код для регистрации
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
   $admin = 0;
@@ -43,17 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
         'username' => $login,
         'email' => $email,
         'password' => $pass
-
-        /*'login' => $_POST['login'] ?? '',
-        'mail' => $_POST['mail'] ?? '',
-        'pass-second' => $hashedPassword,
-        'admin' => 0*/
       ];
       echo '<pre>';
       print_r(var_dump($data));
       echo '</pre>';
       $isSubmit = true;
-      //$errMsg = '<span style="color: green;">Пользователь <strong>' . $login . '</strong> успешно зарегистрирован</span>';
       // это само добавление в БД
       if ($isSubmit) {
         $id = insert($conn, 'users', $data);
@@ -72,11 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
       exit();*/
       //$isSubmit = true;
     }
-    // $id = insert($conn, 'users', $data);
   }
-
-  /*$id = insert($conn, 'users', $data);
-echo $id;*/
 } else {
   $login = '';
   $email = '';
@@ -104,12 +91,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-log'])) {
   } else {
     $existence = selectAll('users', $conn, ['email' => $email]);
     if ($existence && password_verify($pass, $existence['password'])) {
-      // рефакторинг loginUser
       userAuth($existence);
     } else {
       $errMsg = "Почта либо пароль введены неверно!";
     }
-
   }
 } else {
   $email = '';

@@ -50,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['author_create'])) {
   $name = $author['name'];
   $img = $author['img'];
 }
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['author-edit'])) {
 
   $name = trim($_POST['name']);
@@ -66,34 +65,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['author-edit'])) {
     //$userExists = selectAll('genre', $conn, ['genre' => $genre]);
     // Путь к папке, куда нужно сохранить изображение
     $upload_path = 'D:/Programs/Ampps/Ampps/www/documents/img/' . $img;
-
-    // Копирование изображения из временной директории в нужную папку
     if (move_uploaded_file($img_tmp, $upload_path)) {
       $authors = [
         'name' => $name,
         'img' => $img
       ];
-
       // Добавление жанра в базу данных
       $id = $_POST['id'];
       $author_id = update($conn, 'author', $id, $authors);
       if ($id) {
-        // В случае успешного добавления
         $errMsg = "Данные успешно добавлены. ID: " . $id;
       } else {
-        // В случае ошибки при добавлении
         $errMsg = "Ошибка при добавлении данных. Ошибка MySQL: " . mysqli_error($conn);
       }
     } else {
-      // В случае ошибки при копировании изображения
       $errMsg = "Ошибка при загрузке изображения.";
     }
 
   }
 }
-
-// КОНЧАЕТСЯ ЭДИТ
-
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_id'])) {
   // Удаление автора
   $id = $_GET['del_id'];

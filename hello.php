@@ -22,6 +22,7 @@ include("documents/database/db.php") ?>
 
   <!--Font Awesome-->
   <script src="https://kit.fontawesome.com/3ace3ebe9b.js" crossorigin="anonymous"></script>
+  <script src="menu.js"></script>
 
   <link rel="stylesheet" href="/st.css">
   <link rel="shortcut icon" href="/documents/img/favicon.ico" type="image/x-icon">

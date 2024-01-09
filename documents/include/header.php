@@ -9,6 +9,7 @@
           <a href="<?php echo BASE_URL ?>hello.php" class="logo" title="Главная страница">Картинная галерея</a>
         </h1>
       </div>
+      <button class="menu-toggle" aria-label="Открыть меню">&#9776;</button>
       <nav class="col-8">
         <ul>
           <li><a href="<?php echo BASE_URL ?>documents/autor/autors.php">Авторы</a></li>
