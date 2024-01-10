@@ -61,7 +61,8 @@
           echo "</div>";
         }
       } else {
-        echo "<p>У данного жанра нет картин.</p>";
+        echo "<p class='no-images-message'>У данного жанра нет картин.</p>";
+
       }
     } else {
       echo "<p>Жанр не найден.</p>";

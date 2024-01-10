@@ -37,18 +37,24 @@ body {
 
 .wrapper {
   min-height: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
 }
+.no-images-message{
+  margin-bottom: 540px;
+}
+.no-images-message-reglog{
+  margin-bottom: 295px;
+}
 .parent {
+  padding-bottom: 90px;
   padding: 30px;
   flex: 1 1 auto;
-}
-
-.parent {
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 .block {
@@ -238,6 +244,27 @@ header ul li ul a {
   }
 }
 
+
+@media screen and (max-width: 390px) {
+  .menu-toggle {
+    display: block;
+    margin-top: -65px;
+    margin-left: 90px;
+  }
+
+  nav.col-8 {
+    display: none;
+    margin-left: 150px;
+  }
+ 
+
+  /* Показываем меню при активации кнопки */
+  .menu-toggle.active + nav.col-8 {
+    display: block;
+  }
+}
+
+
 /* FOOTER */
 .footer {
   background: rgb(234, 234, 234);
@@ -246,6 +273,7 @@ header ul li ul a {
   padding: 40px;
   bottom: 0;
   width: 100%;
+  
 }
 .image-container {
   display: flex;
@@ -265,7 +293,15 @@ header ul li ul a {
   margin: 0px;
   margin-top: 40px;
   
+  
 }
+
+@media screen and (max-width: 188px){
+  .image-item {
+    margin-left: 200px;
+  }
+}
+
 
 .image-item img {
   transition: 0.5s; /* Время эффекта */
@@ -316,6 +352,62 @@ header ul li ul a {
 
 .image-item:hover .hidden-title {
   opacity: 1;
+}
+@media screen and (max-width: 1020px) {
+  .image-container {
+    display: block; /* Изменяем отображение на блочное для каждой картинки */
+  }
+
+  .image-item {
+    width: 100%; /* Ширина на всю ширину контейнера */
+    margin-bottom: 20px; /* Отступ снизу между картинками */
+    text-align: center; /* Центрируем содержимое по центру */
+    margin-left: 100px;
+  }
+
+  .img-item {
+    width: 100%; /* Ширина картинки будет 80% от родительского контейнера */
+    max-width: 600px; /* Максимальная ширина картинки */
+    min-height: 200px;
+    height: auto; /* Автоматическая высота, чтобы сохранить пропорции */
+    border-radius: 10px; /* Меняем радиус скругления углов */
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .img-item {
+    width: 100%; /* Ширина картинки будет 80% от родительского контейнера */
+    max-width: 400px; /* Максимальная ширина картинки */
+    height: auto; /* Автоматическая высота, чтобы сохранить пропорции */
+    border-radius: 10px; /* Меняем радиус скругления углов */
+  }
+  .hidden-title{
+    opacity: 1;
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .img-item {
+    width: 100%; /* Ширина картинки будет 80% от родительского контейнера */
+    max-width: 400px; /* Максимальная ширина картинки */
+    min-height: 400px;
+    height: auto; /* Автоматическая высота, чтобы сохранить пропорции */
+    border-radius: 10px; /* Меняем радиус скругления углов */
+  }
+  .hidden-title{
+    opacity: 1;
+    font-size: 32px;
+  }
+  .image-item{
+    margin-left: 50px;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .image-item{
+    margin-left: 10px;
+  }
 }
 
 /*FORMS */

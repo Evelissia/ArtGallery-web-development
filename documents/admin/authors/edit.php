@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 include("../../include/path.php");
 include("../../controllers/authors.php");
 ?>

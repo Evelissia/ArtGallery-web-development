@@ -38,7 +38,7 @@ include("../controllers/users.php")
     <!--END HEADER-->
 
     <!--FORM-->
-    <div class="container reg_form">
+    <div class="container reg_form no-images-message-reglog">
       <form class="row justify-content-md-center" method="post" action="reg.php">
         <h2>Форма регистрации</h2>
         <div class="mb-3 col-12 col-md-4 err">

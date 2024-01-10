@@ -1,4 +1,18 @@
-<?php include("../include/path.php"); ?>
+<?php include("../include/path.php");
+include("../database/db.php");
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+/*echo '<pre>';
+print_r(var_dump($page));
+echo '</pre>';*/
+$limit = 6;
+$offset = $limit * ($page - 1);
+$total_pages = round(countRow($conn, 'images') / $limit, 0);
+
+// Формируем SQL-запрос для получения изображений на текущей странице
+$sql = "SELECT * FROM images LIMIT $limit OFFSET $offset";
+$result = mysqli_query($conn, $sql);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 

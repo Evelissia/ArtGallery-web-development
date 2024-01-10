@@ -12,6 +12,7 @@ $gallery_id = '';
 
 $topics = allGenre('genre', $conn, []);
 $authors = allGenre('author', $conn, []);
+$posts = allGenre('images', $conn, []);
 
 // код для формы создания картины
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
@@ -24,14 +25,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
 
   if ($description === '' || $img === '' || $author_id === '' || $gallery_id === '') {
     $errMsg = "Не все поля заполнены!";
+    //array_push($errMsg, "Не все поля заполнены!");
   } elseif (mb_strlen($description, 'UTF8') < 2) {
     $errMsg = "Название картины должно быть более 2-х символов!";
+    //array_push($errMsg, "Название картины должно быть более 2-х символов!");
   } else {
     // Проверка на существование жанра в базе
     $pictureExists = selectAll('images', $conn, ['description' => $description]);
 
     if ($pictureExists) {
       $errMsg = "Такая картина в базе уже существует.";
+      //array_push($errMsg, "Такая картина в базе уже существует.");
     } else {
       // Путь к папке, куда нужно сохранить изображение
       $upload_path = 'D:/Programs/Ampps/Ampps/www/documents/img/' . $img;
@@ -59,32 +63,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
     }
   }
 } else {
+  $description = '';
+  $img = '';
+  $author_id = '';
+  $gallery_id = '';
 }
 
 /*echo '<pre>';
 print_r(var_dump($data));
 echo '</pre>';*/
 
-// Редактирование жанра
+// Редактирование картины
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
-  $id = $_GET['id'];
-  $topic = selectAll('genre', $conn, ['id' => $id]);
-  $id = $topic['id'];
-  $genre = $topic['genre'];
-  $img = $topic['img'];
+
+  $post = selectAll('images', $conn, ['id' => $_GET['id']]);
+
+  $id = $post['id'];
+  $description = $post['description'];
+  $img = $post['img'];
+  $gallery_id = $post['gallery_id'];
+  $author_id = $post['author_id'];
 }
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-edit'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_post'])) {
 
-  $genre = trim($_POST['genre']);
+  $description = trim($_POST['description']);
   $img = $_FILES['img']['name']; // Обработка изображения
   $img_tmp = $_FILES['img']['tmp_name']; // Временное имя файла
 
-  if ($genre === '' || $img === '') {
+  $author_id = $_POST['author_id']; // Получаем ID автора из формы
+  $gallery_id = $_POST['gallery_id']; // Получаем ID жанра из формы
+
+  if ($description === '' || $img === '' || $author_id === '' || $gallery_id === '') {
     $errMsg = "Не все поля заполнены!";
-  } elseif (mb_strlen($genre, 'UTF8') < 2) {
+    //array_push($errMsg, "Не все поля заполнены!");
+  } elseif (mb_strlen($description, 'UTF8') < 2) {
     $errMsg = "Жанр должен быть более 2-х символов!";
+    //array_push($errMsg, "Жанр должен быть более 2-х символов!");
   } else {
     // Проверка на существование жанра в базе
     //$userExists = selectAll('genre', $conn, ['genre' => $genre]);
@@ -93,14 +109,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-edit'])) {
 
     // Копирование изображения из временной директории в нужную папку
     if (move_uploaded_file($img_tmp, $upload_path)) {
-      $genres = [
-        'genre' => $genre,
-        'img' => $img
+      $pictures = [
+        'description' => $description,
+        'img' => $img,
+        'gallery_id' => $gallery_id,
+        'author_id' => $author_id
       ];
 
       // Добавление жанра в базу данных
       $id = $_POST['id'];
-      $genre_id = update($conn, 'genre', $id, $genres);
+      $genre_id = update($conn, 'images', $id, $pictures);
       if ($id) {
         $errMsg = "Данные успешно добавлены. ID: " . $id;
       } else {
@@ -108,15 +126,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-edit'])) {
       }
     } else {
       $errMsg = "Ошибка при загрузке изображения.";
+      //array_push($errMsg, "Ошибка при загрузке изображения.");
     }
 
   }
 }
-// Удаление жанра
+// Удаление картины
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_id'])) {
   $id = $_GET['del_id'];
 
-  deleteUserById($conn, 'genre', $id);
-  header('location' . BASE_URL . 'documents/admin/topics/index.php');
+  deleteUserById($conn, 'images', $id);
+  header('location' . BASE_URL . 'documents/admin/posts/index.php');
 }
 ?>

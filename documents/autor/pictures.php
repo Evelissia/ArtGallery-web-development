@@ -62,7 +62,7 @@
           echo "</div>";
         }
       } else {
-        echo "<p>У данного автора нет картин.</p>";
+        echo "<p class='no-images-message'>У данного автора нет картин.</p>";
       }
     } else {
       echo "<p>Автор не найден.</p>";

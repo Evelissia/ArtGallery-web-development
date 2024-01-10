@@ -1,6 +1,7 @@
-<?php session_start();
+<?php
 include("../../include/path.php");
 include("../../controllers/posts.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -39,14 +40,9 @@ include("../../controllers/posts.php");
       <div class="row">
         <?php include "../../include/sidebar-admin.php" ?>
         <div class="posts col-9">
-          <div class="button row">
-            <a href="<?= BASE_URL . "documents/admin/posts/create.php"; ?>" class="col-3 btn btn-success">Создать</a>
-            <span class="col-1"></span>
-            <a href="<?= BASE_URL . "documents/admin/posts/index.php"; ?>" class="col-3 btn
-              btn-warning">Управление</a>
-          </div>
+
           <div class="row title-table">
-            <h1>Добавление картины</h1>
+            <h1>Редактирование картины</h1>
 
           </div>
           <div class="row add-post">
@@ -56,13 +52,21 @@ include("../../controllers/posts.php");
               </p>
             </div>
             <form action="edit.php" method="post" enctype="multipart/form-data">
+              <input name="id" value="<?= $id; ?>" type="hidden">
               <div class="col mb-4">
-                <input name="description" type="text" class="form-control" placeholder="title"
-                  aria-label="Название картины">
+                <input name="description" value="<?= $description; ?>" type="text" class="form-control"
+                  placeholder="title" aria-label="Название картины">
               </div>
 
+              <?php if (!empty($img)): ?>
+                <div class="col">
+                  <img src="<?= BASE_URL . 'documents/img/' . $img; ?>" alt="Current Image"
+                    style="max-width: 200px; margin-top: 10px;">
+                </div>
+              <?php endif; ?>
+
               <div class="input-group col">
-                <input name="img" value="<?= $img; ?>" type="file" class="form-control" id="inputGroupFile02">
+                <input name="img" type="file" class="form-control" id="inputGroupFile02">
                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
               </div>
               <select name="author_id" class="form-select" aria-label="Default select example">
@@ -86,7 +90,7 @@ include("../../controllers/posts.php");
                 <?php endforeach; ?>
               </select>
               <div class="col">
-                <button name="add_post" class="btn btn-primary" type="submit">Добавить картину</button>
+                <button name="edit_post" class="btn btn-primary" type="submit">Сохранить картину</button>
               </div>
             </form>
           </div>

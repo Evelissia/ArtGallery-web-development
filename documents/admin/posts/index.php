@@ -1,6 +1,7 @@
-<?php session_start();
-include("../../include/path.php")
-  ?>
+<?php
+include("../../include/path.php");
+include("../../controllers/posts.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,16 +49,26 @@ include("../../include/path.php")
             <h1>Управление картинами</h1>
             <div class="id col-1">ID</div>
             <div class="title col-5">Название</div>
-            <div class="image col-2">Картина</div>
+            <div class="image col-2">Номер автора</div>
             <div class="red col-4">Управление</div>
           </div>
-          <div class="row post">
-            <div class="id col-1">1</div>
-            <div class="title col-5">Дай Винчик</div>
-            <div class="image col-2">Картина</div>
-            <div class="red col-2"><a href="#">edit</a></div>
-            <div class="del col-2"><a href="#">delete</a></div>
-          </div>
+
+          <?php foreach ($posts as $key => $post): ?>
+
+            <div class="row post">
+              <div class="id col-1">
+                <?= $key + 1; ?>
+              </div>
+              <div class="title col-5">
+                <?= $post['description'] ?>
+              </div>
+              <div class="author col-2">
+                <?= $post['author_id'] ?>
+              </div>
+              <div class="red col-2"><a href="edit.php?id=<?= $post['id']; ?>">edit</a></div>
+              <div class="del col-2"><a href="edit.php?del_id=<?= $post['id']; ?>">delete</a></div>
+            </div>
+          <?php endforeach; ?>
 
         </div>
       </div>

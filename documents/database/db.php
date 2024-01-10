@@ -1,6 +1,5 @@
 <?php
 
-// и здесь переписать с использованием mysqli_connect
 /*require('db_connect.php'); 
 
 function tt($value) {
@@ -8,24 +7,7 @@ function tt($value) {
   print_r($value);
   echo '</pre>';
 }
-
-function selectAll($table) {
-  global $pdo;
-
-  $sql = "SELECT * FROM $table";
-  $query = $pdo->prepare($sql);
-  $query->execute();
-  $errInfo = $query->errorInfo();
-  if($errInfo[0] !== PDO::ERR_NONE){
-    echo $errInfo[2];
-    exit();
-  }
-
-  return $query->fetchAll();
-
-}
-
-tt(selectAll('users'))*/
+*/
 
 session_start();
 
@@ -211,5 +193,44 @@ function deleteUserById($conn, $table, $id)
 $tableName = 'users';
 $userIdToDelete = 24; // Замените этот ID на нужный вам
 
-//deleteUserById($conn, $tableName, $userIdToDelete)
+
+
+
+// Выборка картин (posts) с автором в админку
+function selectAllFromPostsWithUsers($conn)
+{
+  $sql = "SELECT images.*, author.name AS author_name
+          FROM images
+          LEFT JOIN author ON images.author_id = author.id";
+  $result = mysqli_query($conn, $sql);
+
+  if (!$result) {
+    echo "Ошибка запроса: " . mysqli_error($conn);
+    return [];
+  }
+
+  $posts = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $posts[] = $row;
+  }
+
+  return $posts;
+}
+
+function countRow($conn, $table)
+{
+  $sql = "SELECT COUNT(*) AS count FROM $table";
+  $result = mysqli_query($conn, $sql);
+  if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    return $row['count'];
+  } else {
+    echo "Ошибка запроса: " . mysqli_error($conn);
+    return 0;
+  }
+}
+
+
+
+
 ?>
