@@ -1,10 +1,10 @@
-<?php session_start();
+<?php
 include("../../include/path.php");
 include("../../controllers/authors.php");
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
   <meta charset="UTF-8">

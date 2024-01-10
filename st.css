@@ -88,9 +88,6 @@ header h1 {
   /*font-size: clamp(30px, 5vw, 150px);*/
 }
 
-header h1 a:hover {
-  
-}
 
 .logo {
   text-decoration: none;
@@ -102,7 +99,6 @@ header h1 a:hover {
   text-decoration: none;
 }
 .logoo{
-  
   text-decoration: none;
   font-size: clamp(10px, 3vw, 25px);
 }
@@ -171,24 +167,24 @@ header ul li ul a {
 @media only screen and (max-width : 1170px) {
   nav.col-8 {
     margin-top: -90px;
-    margin-left: 400px; /* Смещение меню на 50px при ширине экрана 1170px и более */
+    margin-left: 400px; 
   }
 }
 
 @media only screen and (max-width : 1115px) {
   nav.col-8 {
     margin-top: -90px;
-    margin-left: 224px; /* Смещение меню на 50px при ширине экрана 1170px и более */
+    margin-left: 224px;
   }
 }
 
 @media screen and (max-width : 995px) {
   nav.col-8 {
     margin-top: -90px;
-    margin-left: 65px; /* Смещение меню на 50px при ширине экрана 1170px и более */
+    margin-left: 65px; 
   }
   .logoo {
-    font-size: 15px; /* Уменьшение размера шрифта логотипа при ширине экрана менее 994px */
+    font-size: 15px; 
   }
 }
 @media screen and (max-width: 993px) {

@@ -1,6 +1,7 @@
 <?php session_start();
-include("../../include/path.php")
-  ?>
+include("../../include/path.php");
+include("../../controllers/posts.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,18 +46,49 @@ include("../../include/path.php")
               btn-warning">Управление</a>
           </div>
           <div class="row title-table">
-            <h1>Управление картинами</h1>
-            <div class="id col-1">ID</div>
-            <div class="title col-5">Название</div>
-            <div class="image col-2">Картина</div>
-            <div class="red col-4">Управление</div>
+            <h1>Добавление картины</h1>
+
           </div>
-          <div class="row post">
-            <div class="id col-1">1</div>
-            <div class="title col-5">Дай Винчик</div>
-            <div class="image col-2">Картина</div>
-            <div class="red col-2"><a href="#">edit</a></div>
-            <div class="del col-2"><a href="#">delete</a></div>
+          <div class="row add-post">
+            <div class="mb-12 col-12 col-md-12 err">
+              <p>
+                <?= $errMsg ?>
+              </p>
+            </div>
+            <form action="edit.php" method="post" enctype="multipart/form-data">
+              <div class="col mb-4">
+                <input name="description" type="text" class="form-control" placeholder="title"
+                  aria-label="Название картины">
+              </div>
+
+              <div class="input-group col">
+                <input name="img" value="<?= $img; ?>" type="file" class="form-control" id="inputGroupFile02">
+                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+              </div>
+              <select name="author_id" class="form-select" aria-label="Default select example">
+                <option selected>Выберите автора:</option>
+                <?php foreach ($authors as $key => $author): ?>
+                  <option value="<?= $author['id']; ?>">
+                    <?= $author['name']; ?>
+                  </option>
+
+                <?php endforeach; ?>
+              </select>
+
+              <div class="w-100"></div>
+              <select name="gallery_id" class="form-select" aria-label="Default select example">
+                <option selected>Выберите жанр:</option>
+                <?php foreach ($topics as $key => $topic): ?>
+                  <option value="<?= $topic['id']; ?>">
+                    <?= $topic['genre']; ?>
+                  </option>
+
+                <?php endforeach; ?>
+              </select>
+              <div class="col">
+                <button name="add_post" class="btn btn-primary" type="submit">Добавить картину</button>
+              </div>
+            </form>
           </div>
 
         </div>
