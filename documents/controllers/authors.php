@@ -8,7 +8,7 @@ $img = '';
 $authors = allGenre('author', $conn, []);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['author_create'])) {
-  $name = trim($_POST['name']);
+  $name = htmlentities(trim($_POST['name']));
   $img = $_FILES['img']['name'];
   $img_tmp = $_FILES['img']['tmp_name'];
   // Проверки на ввод данных (пустые поля, длина имени и пр.)
@@ -47,12 +47,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['author_create'])) {
   // Редактирование автора
   $id = $_GET['id'];
   $author = selectAll('author', $conn, ['id' => $id]);
-  $name = $author['name'];
+  $name = htmlentities($author['name']);
   $img = $author['img'];
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['author-edit'])) {
 
-  $name = trim($_POST['name']);
+  $name = htmlentities(trim($_POST['name']));
   $img = $_FILES['img']['name'];
   $img_tmp = $_FILES['img']['tmp_name']; // Временное имя файла
 
@@ -88,6 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_id'])) {
   // Удаление автора
   $id = $_GET['del_id'];
   deleteUserById($conn, 'author', $id);
-  header('location: ' . BASE_URL . 'documents/admin/authors/index.php');
+  header('Location: ' . BASE_URL . 'documents/admin/authors/index.php');
 }
 ?>

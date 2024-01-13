@@ -6,7 +6,7 @@
       <div class="col-4">
 
         <h1 class="logoo"><img src="/documents/img/favicon.ico" alt="Галерея" class="gallery-image">
-          <a href="<?php echo BASE_URL ?>hello.php" class="logo" title="Главная страница">Картинная галерея</a>
+          <a href="<?php echo BASE_URL ?>index.php" class="logo" title="Главная страница">Картинная галерея</a>
         </h1>
       </div>
       <nav class="col-8">

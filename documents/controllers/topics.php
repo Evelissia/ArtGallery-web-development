@@ -9,7 +9,7 @@ $img = '';
 $topics = allGenre('genre', $conn, []);
 // код для формы создания жанра
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-create'])) {
-  $genre = trim($_POST['genre']);
+  $genre = htmlentities(trim($_POST['genre']));
   $img = $_FILES['img']['name']; // Обработка изображения
   $img_tmp = $_FILES['img']['tmp_name']; // Временное имя файла
 
@@ -61,12 +61,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
   $id = $_GET['id'];
   $topic = selectAll('genre', $conn, ['id' => $id]);
   $id = $topic['id'];
-  $genre = $topic['genre'];
+  $genre = htmlentities($topic['genre']);
   $img = $topic['img'];
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genre-edit'])) {
 
-  $genre = trim($_POST['genre']);
+  $genre = htmlentities(trim($_POST['genre']));
   $img = $_FILES['img']['name'];
   $img_tmp = $_FILES['img']['tmp_name']; // Временное имя файла
 
@@ -103,6 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_id'])) {
   $id = $_GET['del_id'];
 
   deleteUserById($conn, 'genre', $id);
-  header('location' . BASE_URL . 'documents/admin/topics/index.php');
+  header('Location: ' . BASE_URL . 'documents/admin/topics/index.php');
 }
 ?>

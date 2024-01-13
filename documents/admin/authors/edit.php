@@ -43,14 +43,14 @@ include("../../controllers/authors.php");
           <div class="row add-post">
             <div class="mb-12 col-12 col-md-12 err">
               <p>
-                <?= $errMsg ?>
+                <?= htmlspecialchars($errMsg, ENT_QUOTES); ?>
               </p>
             </div>
             <form action="edit.php" method="post" enctype="multipart/form-data">
               <input name="id" value="<?= $id; ?>" type="hidden">
               <div class="col">
-                <input name="name" value="<?= $name; ?>" type="text" class="form-control" placeholder="Название жанра"
-                  aria-label="Название жанра">
+                <input name="name" value="<?= htmlspecialchars($name, ENT_QUOTES); ?>" type="text" class="form-control"
+                  placeholder="Название жанра" aria-label="Название жанра">
               </div>
 
               <?php if (!empty($img)): ?>

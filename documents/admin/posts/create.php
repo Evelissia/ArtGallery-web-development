@@ -53,18 +53,23 @@ include("../../controllers/posts.php");
           <div class="row add-post">
             <div class="mb-12 col-12 col-md-12 err">
               <p>
-                <?= $errMsg ?>
+                <?= $errMsg; ?>
               </p>
             </div>
             <form action="create.php" method="post" enctype="multipart/form-data">
               <div class="col mb-4">
-                <input name="description" type="text" class="form-control" placeholder="title"
-                  aria-label="Название картины">
+                <input name="description" value="<?= $description; ?>" type="text" class="form-control"
+                  placeholder="title" aria-label="Название картины">
               </div>
 
               <div class="input-group col">
                 <input name="img" value="<?= $img; ?>" type="file" class="form-control" id="inputGroupFile02">
                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
+              </div>
+              <div class="col">
+                <label for="editor" class="form-label">Описание картины</label>
+                <textarea name="content" value="<?= strip_tags($content, ENT_QUOTES); ?>" class="form-control"
+                  rows="6"></textarea>
               </div>
               <select name="author_id" class="form-select" aria-label="Default select example">
                 <option selected>Выберите автора:</option>

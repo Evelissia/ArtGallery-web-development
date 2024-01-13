@@ -59,7 +59,9 @@ $result = mysqli_query($conn, $sql);
           echo "<div class='image-item'>";
           echo "<div class='img-container'>";
           echo "<img src='../img/" . $row["img"] . "' alt='Картина' class='img-item img-fluid'>";
-          echo "<h2 class='hidden-title'>" . $row["description"] . "</h2>";
+
+          echo "<h2 class='name-authors'>" . $row["description"] . "</h2>";
+          echo "<h2 class='content'>" . $row["content"] . "</h2>";
           echo "</div>";
           echo "</a>";
           echo "</div>";

@@ -12,7 +12,7 @@ function userAuth($user)
   if ($_SESSION['admin']) {
     header('location: ' . BASE_URL . '/documents/admin/posts/index.php');
   } else {
-    header('location: ' . BASE_URL . '/hello.php');
+    header('location: ' . BASE_URL . '/index.php');
   }
 }
 // код для регистрации

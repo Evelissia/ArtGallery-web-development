@@ -47,11 +47,11 @@
           while ($row = mysqli_fetch_assoc($result)) {
             $genreId = $row["id"];
             echo "<div class='image-item'>";
-            $genreLink = "<a href='http://localhost/documents/genre/genre_picturies.php?id=" . $genreId . "' target='_blank'>" . $row["genre"] . "</a>";
-            echo "<a href='http://localhost/documents/genre/genre_picturies.php?id=" . $genreId . "' target='_blank'>";
+            $genreLink = "<a href='" . BASE_URL . "documents/genre/genre_picturies.php?id=" . $genreId . "' target='_blank'>" . $row["genre"] . "</a>";
+            echo "<a href='" . BASE_URL . "documents/genre/genre_picturies.php?id=" . $genreId . "' target='_blank'>";
             echo "<div class='img-container'>"; // Добавлен контейнер для изображения и текста
             echo "<img src='../img/" . $row["img"] . "' alt='Картина' class='img-item img-fluid'>";
-            echo "<h2 class='hidden-title'>" . $genreLink . "</h2>"; // Добавлен скрытый заголовок
+            echo "<h2 class='name-authors'>" . $genreLink . "</h2>"; // Добавлен скрытый заголовок
             echo "</div>";
             echo "</a>";
             echo "</div>";

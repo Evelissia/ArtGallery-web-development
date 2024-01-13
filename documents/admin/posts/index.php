@@ -60,13 +60,13 @@ include("../../controllers/posts.php");
                 <?= $key + 1; ?>
               </div>
               <div class="title col-5">
-                <?= $post['description'] ?>
+                <?= strip_tags($post['description']); ?>
               </div>
               <div class="author col-2">
                 <?= $post['author_id'] ?>
               </div>
               <div class="red col-2"><a href="edit.php?id=<?= $post['id']; ?>">edit</a></div>
-              <div class="del col-2"><a href="edit.php?del_id=<?= $post['id']; ?>">delete</a></div>
+              <div class="del col-2"><a href="index.php?del_id=<?= $post['id']; ?>">delete</a></div>
             </div>
           <?php endforeach; ?>
 

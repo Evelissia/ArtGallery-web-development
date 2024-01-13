@@ -6,7 +6,7 @@
       <div class="col-4">
 
         <h1 class="logoo"><img src="/documents/img/favicon.ico" alt="Галерея" class="gallery-image">
-          <a href="<?php echo BASE_URL ?>hello.php" class="logo" title="Главная страница">Картинная галерея</a>
+          <a href="<?php echo BASE_URL ?>index.php" class="logo" title="Главная страница">Картинная галерея</a>
         </h1>
       </div>
       <button class="menu-toggle" aria-label="Открыть меню">&#9776;</button>
@@ -24,7 +24,7 @@
               </a>
               <ul>
                 <?php if (($_SESSION['admin'])): ?>
-                  <li><a href="#" title="">Админ панель</a></li>
+                  <li><a href="<?php echo BASE_URL ?>documents/admin/posts/index.php" title="">Админ панель</a></li>
                 <?php endif; ?>
                 <li><a href="<?php echo BASE_URL ?>documents/admin/logout.php" title="">Выход</a></li>
               </ul>

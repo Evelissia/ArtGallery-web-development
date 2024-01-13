@@ -48,14 +48,16 @@ include("../../controllers/posts.php");
           <div class="row add-post">
             <div class="mb-12 col-12 col-md-12 err">
               <p>
-                <?= $errMsg ?>
+              <p>
+                <?= $errMsg; ?>
+              </p>
               </p>
             </div>
             <form action="edit.php" method="post" enctype="multipart/form-data">
               <input name="id" value="<?= $id; ?>" type="hidden">
               <div class="col mb-4">
-                <input name="description" value="<?= $description; ?>" type="text" class="form-control"
-                  placeholder="title" aria-label="Название картины">
+                <input name="description" value="<?= strip_tags($description, ENT_QUOTES); ?>" type="text"
+                  class="form-control" placeholder="title" aria-label="Название картины">
               </div>
 
               <?php if (!empty($img)): ?>
@@ -68,6 +70,11 @@ include("../../controllers/posts.php");
               <div class="input-group col">
                 <input name="img" type="file" class="form-control" id="inputGroupFile02">
                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
+              </div>
+              <div class="col">
+                <label for="editor" class="form-label">Описание картины</label>
+                <textarea name="content" class="form-control"
+                  rows="6"><?= htmlspecialchars($content, ENT_QUOTES); ?></textarea>
               </div>
               <select name="author_id" class="form-select" aria-label="Default select example">
                 <option selected>Выберите автора:</option>

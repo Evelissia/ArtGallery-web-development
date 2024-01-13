@@ -1,4 +1,19 @@
-<?php include("../include/path.php"); ?>
+<?php include("../include/path.php");
+require_once '../database/db_connect.php';
+// Получение ID автора из URL-параметра
+$authorId = $_GET['id'];
+
+// Выполнение SQL-запроса для получения имени автора
+$authorSql = "SELECT name FROM author WHERE id = $authorId";
+$authorResult = mysqli_query($conn, $authorSql);
+
+$pageTitle = "Автор не найден"; // Значение по умолчанию
+
+if (mysqli_num_rows($authorResult) > 0) {
+  $authorRow = mysqli_fetch_assoc($authorResult);
+  $pageTitle = "Картины " . htmlspecialchars($authorRow["name"], ENT_QUOTES, 'UTF-8');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +37,9 @@
 
   <link rel="shortcut icon" href="/documents/img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="/st.css">
-  <title>Картины автора</title>
+  <title>
+    <?php echo $pageTitle; ?>
+  </title>
   <style>
 
   </style>
@@ -34,7 +51,7 @@
 
 
     <?php
-    require_once '../database/db_connect.php';
+    //require_once '../database/db_connect.php';
     // Получение ID автора из URL-параметра
     $authorId = $_GET['id'];
 
@@ -44,7 +61,7 @@
 
     if (mysqli_num_rows($authorResult) > 0) {
       $authorRow = mysqli_fetch_assoc($authorResult);
-      $authorName = $authorRow["name"];
+      $authorName = htmlspecialchars($authorRow["name"], ENT_QUOTES, 'UTF-8');
 
       echo "<h1 style='width: 100%; text-align: center; margin-top: 30px;'>Картины $authorName:</h1>";
 
@@ -57,7 +74,8 @@
           echo "<div class='image-item'>";
           echo "<div class='img-container'>"; // Добавлен контейнер для изображения и текста
           echo "<img src='../img/" . $row["img"] . "' alt='Картина' class='img-item img-fluid'>";
-          echo "<h2 class='hidden-title'>" . $row["description"] . "</h2>"; // Добавлен скрытый заголовок
+          echo "<h2 class=''>" . $row["description"] . "</h2>"; // Добавлен скрытый заголовок
+          echo "<h2 class='content'>" . $row["content"] . "</h2>";
           echo "</div>";
           echo "</div>";
         }

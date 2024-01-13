@@ -52,13 +52,13 @@ include("../../controllers/authors.php");
           <div class="row add-post">
             <div class="mb-12 col-12 col-md-12 err">
               <p>
-                <?= $errMsg ?>
+                <?= htmlspecialchars($errMsg, ENT_QUOTES); ?>
               </p>
             </div>
             <form action="create.php" method="post" enctype="multipart/form-data">
               <div class="col">
-                <input name="name" value="<?= $name; ?>" value="" type="text" class="form-control"
-                  placeholder="Имя автора" aria-label="Имя автора">
+                <input name="name" value="<?= htmlspecialchars($name, ENT_QUOTES); ?>" value="" type="text"
+                  class="form-control" placeholder="Имя автора" aria-label="Имя автора">
               </div>
 
               <div class="input-group col">

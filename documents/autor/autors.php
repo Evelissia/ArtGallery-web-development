@@ -45,11 +45,11 @@
           while ($row = mysqli_fetch_assoc($result)) {
             $authorId = $row["id"]; // Получение ID автора
             echo "<div class='image-item'>";
-            $authorLink = "<a href='http://localhost/documents/autor/pictures.php?id=" . $authorId . "' target='_blank'> title='Картины автора' " . $row["name"] . "</a>";
-            echo "<a href='http://localhost/documents/autor/pictures.php?id=" . $authorId . "' target='_blank'>";
+            $authorLink = "<a href='" . BASE_URL . "documents/autor/pictures.php?id=" . $authorId . "' target='_blank'> title='Картины автора' " . $row["name"] . "</a>";
+            echo "<a href='" . BASE_URL . "documents/autor/pictures.php?id=" . $authorId . "' target='_blank'>";
             echo "<div class='img-container'>"; // Добавлен контейнер для изображения и текста
             echo "<img src='../img/" . $row["img"] . "' alt='Изображение автора' class='img-item img-fluid'>";
-            echo "<h2 class='hidden-title'>" . $row["name"] . "</h2>"; // Добавлен скрытый заголовок
+            echo "<h2 class='name-authors'>" . $row["name"] . "</h2>";
             echo "</div>";
             echo "</a>";
             echo "</div>";

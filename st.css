@@ -338,6 +338,15 @@ header ul li ul a {
   font-size: 45px;
 }
 
+.main-title {
+  font-size: 36px; /* Выберите желаемый размер шрифта */
+  
+}
+
+.name-authors {
+  font-family: cursive;
+  font-size: 24px;
+}
 .hidden-title {
   position: absolute;
   top: 50%;
@@ -348,6 +357,14 @@ header ul li ul a {
   color: #ffffff;
   font-size: 40px;
   font-weight: 700;
+}
+.content {
+  overflow: hidden; /* Обрезаем текст, который выходит за пределы блока */
+  text-overflow: ellipsis; /* Если текст обрезан, добавляем многоточие (...) в конце */
+  white-space: normal; /* Запрещаем перенос строк */
+  font-size: 16px; /* Размер шрифта, при необходимости измените под ваши требования */
+  color: #333; /* Цвет текста, при необходимости измените под ваши требования */
+  margin-top: 10px; /* Отступ сверху, при необходимости измените под ваши требования */
 }
 
 .image-item:hover .hidden-title {

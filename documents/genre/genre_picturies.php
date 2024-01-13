@@ -1,4 +1,20 @@
-<?php include("../include/path.php"); ?>
+<?php include("../include/path.php");
+require_once '../database/db_connect.php';
+
+// Получение ID жанра из URL-параметра
+$genreId = $_GET['id'];
+
+// Выполнение SQL-запроса для получения имени жанра
+$genreSql = "SELECT genre FROM genre WHERE id = $genreId";
+$genreResult = mysqli_query($conn, $genreSql);
+
+$pageTitle = "Жанр не найден"; // Значение по умолчанию
+
+if (mysqli_num_rows($genreResult) > 0) {
+  $genreRow = mysqli_fetch_assoc($genreResult);
+  $pageTitle = "Картины " . htmlspecialchars($genreRow["genre"], ENT_QUOTES, 'UTF-8');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +37,9 @@
 
   <link rel="shortcut icon" href="/documents/img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="/st.css">
-  <title>Картины жанра</title>
+  <title>
+    <?php echo $pageTitle; ?>
+  </title>
   <style>
 
   </style>
@@ -56,7 +74,8 @@
           echo "<div class='image-item'>";
           echo "<div class='img-container'>"; // Добавлен контейнер для изображения и текста
           echo "<img src='../img/" . $row["img"] . "' alt='Картина' class='img-item img-fluid'>";
-          echo "<h2 class='hidden-title'>" . $row["description"] . "</h2>"; // Добавлен скрытый заголовок
+          echo "<h2 class=''>" . $row["description"] . "</h2>"; // Добавлен скрытый заголовок
+          echo "<h2 class='content'>" . $row["content"] . "</h2>";
           echo "</div>";
           echo "</div>";
         }
