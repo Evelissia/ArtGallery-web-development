@@ -43,14 +43,11 @@ include("../../controllers/posts.php");
 
           <div class="row title-table">
             <h1>Редактирование картины</h1>
-
           </div>
           <div class="row add-post">
             <div class="mb-12 col-12 col-md-12 err">
               <p>
-              <p>
                 <?= $errMsg; ?>
-              </p>
               </p>
             </div>
             <form action="edit.php" method="post" enctype="multipart/form-data">
@@ -67,10 +64,12 @@ include("../../controllers/posts.php");
                 </div>
               <?php endif; ?>
 
+              <input type="hidden" name="current_img" value="<?= $img; ?>">
               <div class="input-group col">
                 <input name="img" type="file" class="form-control" id="inputGroupFile02">
                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
               </div>
+
               <div class="col">
                 <label for="editor" class="form-label">Описание картины</label>
                 <textarea name="content" class="form-control"
@@ -79,10 +78,9 @@ include("../../controllers/posts.php");
               <select name="author_id" class="form-select" aria-label="Default select example">
                 <option selected>Выберите автора:</option>
                 <?php foreach ($authors as $key => $author): ?>
-                  <option value="<?= $author['id']; ?>">
+                  <option value="<?= $author['id']; ?>" <?= ($author['id'] == $author_id) ? 'selected' : ''; ?>>
                     <?= $author['name']; ?>
                   </option>
-
                 <?php endforeach; ?>
               </select>
 
@@ -90,10 +88,9 @@ include("../../controllers/posts.php");
               <select name="gallery_id" class="form-select" aria-label="Default select example">
                 <option selected>Выберите жанр:</option>
                 <?php foreach ($topics as $key => $topic): ?>
-                  <option value="<?= $topic['id']; ?>">
+                  <option value="<?= $topic['id']; ?>" <?= ($topic['id'] == $gallery_id) ? 'selected' : ''; ?>>
                     <?= $topic['genre']; ?>
                   </option>
-
                 <?php endforeach; ?>
               </select>
               <div class="col">
@@ -101,15 +98,11 @@ include("../../controllers/posts.php");
               </div>
             </form>
           </div>
-
         </div>
       </div>
     </div>
-
-
   </div>
   <?php include("../../include/footer.php"); ?>
-
 </body>
 
 </html>

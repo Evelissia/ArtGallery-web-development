@@ -60,6 +60,8 @@ include("../../controllers/authors.php");
                 </div>
               <?php endif; ?>
 
+              <input type="hidden" name="current_img" value="<?= $img; ?>">
+
               <div class="input-group col">
                 <input name="img" type="file" class="form-control" id="inputGroupFile02">
                 <label class="input-group-text" for="inputGroupFile02">Upload</label>

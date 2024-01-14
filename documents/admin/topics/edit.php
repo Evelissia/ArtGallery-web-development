@@ -53,6 +53,7 @@ include("../../controllers/topics.php");
                   aria-label="Название жанра">
               </div>
 
+              <input type="hidden" name="current_img" value="<?= $img; ?>">
               <?php if (!empty($img)): ?>
                 <div class="col">
                   <img src="<?= BASE_URL . 'documents/img/' . $img; ?>" alt="Current Image"
